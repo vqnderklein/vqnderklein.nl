@@ -294,3 +294,110 @@ footer>p {
         font-weight: normal;
     }
 }
+
+.WorldeGame input {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    font-size: 22px;
+    align-items: center;
+    border: 1px solid var(--fontAccent);
+    outline: transparent;
+    justify-items: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.gridBody::after {
+    content: "";
+    width: 100%;
+    position: absolute;
+    z-index: 100;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.WorldeGame input:focus {
+    outline: transparent;
+}
+
+section.WorldeGame {
+    margin: 1em 1rem 0 1rem;
+    border: 1px solid var(--fontAccent);
+    border-radius: 5px 5px 0 0;
+    position: relative;
+    width: min-content;
+}
+
+.wordleHeader {
+    display: flex;
+    z-index: 1000;
+    padding: 1rem 1rem 0rem 1rem;
+    align-items: center;
+    position: relative;
+    justify-content: space-between;
+}
+
+.wordleHeader svg {
+    cursor: pointer;
+}
+
+.WorldeGame .gridBody {
+    display: grid;
+    margin-top: 1rem;
+    position: relative;
+    padding: 1em;
+    gap: 10px;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.resultBody {
+    padding: 1rem;
+    animation: fadeIn ease-in-out 2000ms forwards;
+    text-align: center;
+    padding-bottom: 8rem;
+    position: relative;
+}
+
+@keyframes fadeIn {
+    0% {
+        top: -40px;
+        opacity: 0;
+    }
+    100% {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+.resultBody header {
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.specialWorlde {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: rgb(231, 231, 231, 40%);
+    text-align: center;
+    font-family: monospace;
+    font-weight: 200;
+    font-size: 20px;
+}
+
+.fadeOut {
+    animation-delay: 5000ms;
+    animation: fadeOut ease-in-out 2000ms forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+}

@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="/assets/img/favicon-light.svg" type="image/x-icon">
 
     <script src="/assets/js/core.js" defer></script>
-    <script src="/assets/js/app.js" defer></script>
+    <script src="/assets/js/wordle.js" defer></script>
 
     <title>About • vqnderklein.nl </title>
 </head>
@@ -120,14 +120,15 @@
                 <p>Haii, ik ben Mathijs, een negentienjarige student die al meer dan 4 jaar bezig is met webdevelopment. Benieuwd naar mijn werk of benieuwd naar wat ik voor jou kan betekenen, stuur een bericht en wellicht wordt jouw online idee werkelijkheid.</p>
 
 
-                <div id="grid_images"></div>
-                <div class="gridControls">
-                    <p>Gemaakt met de <a href="https://pexels.com" target="_blank">pexels api</a></p>
-                    <a onclick="CreateGrid()"><svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 256 256">
-                            <path fill="currentColor" d="M28 128a68.07 68.07 0 0 1 68-68h118.34l-17.17-17.17a4 4 0 0 1 5.66-5.66l24 24a4 4 0 0 1 0 5.66l-24 24a4 4 0 0 1-5.66-5.66L214.34 68H96a60.07 60.07 0 0 0-60 60a4 4 0 0 1-8 0m196-4a4 4 0 0 0-4 4a60.07 60.07 0 0 1-60 60H41.66l17.17-17.17a4 4 0 0 0-5.66-5.66l-24 24a4 4 0 0 0 0 5.66l24 24a4 4 0 1 0 5.66-5.66L41.66 196H160a68.07 68.07 0 0 0 68-68a4 4 0 0 0-4-4" />
+                <section class="WorldeGame">
+                    <header class="wordleHeader">
+                        <h3>Raad het woord</h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 15 15">
+                            <path fill="currentColor" fill-rule="evenodd" d="M1.5 3a.5.5 0 0 0 0 1h12a.5.5 0 0 0 0-1zM1 7.5a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 0 1h-12a.5.5 0 0 1-.5-.5m0 4a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 0 1h-12a.5.5 0 0 1-.5-.5" clip-rule="evenodd" />
                         </svg>
-                    </a>
-                </div>
+                    </header>
+                    <div class="gridBody"></div>
+                </section>
                 <footer>
                     <p><b> 2024 </b> • All rights reserved</p>
                     <b>vqnderklein.nl</b>
