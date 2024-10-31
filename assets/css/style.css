@@ -386,6 +386,12 @@ section.WorldeGame {
     font-size: 20px;
 }
 
+.controls {
+    padding: 0.5rem;
+    border-top: 1px solid var(--fontAccent);
+    color: var(--fontAccent);
+}
+
 .fadeOut {
     animation-delay: 5000ms;
     animation: fadeOut ease-in-out 2000ms forwards;
@@ -399,5 +405,219 @@ section.WorldeGame {
     100% {
         transform: translateY(40px);
         opacity: 0;
+    }
+}
+
+.cv_item {
+    border: 1px solid var(--fontAccent);
+    border-left: 0;
+    border-bottom: 0;
+    border-right: 0;
+    padding: 1rem;
+    header {
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+    .personal {
+        max-width: 600px;
+        padding-top: 5px;
+        line-height: 1.5;
+    }
+    ul {
+        padding: 1rem 0;
+    }
+    article {
+        margin: 1rem 0;
+        display: flex;
+        gap: 0.4rem 0.6rem;
+        flex-wrap: wrap;
+        max-width: 700px;
+        span {
+            padding: 6px 12px;
+            text-transform: lowercase;
+            color: black;
+            background-color: #cfcfcf;
+            border-radius: 8px;
+        }
+    }
+    ul>li {
+        list-style-type: none;
+        display: flex;
+        padding: 0.8rem 0em;
+        width: 400px;
+        border-bottom: 1px solid var(--lightGrey);
+        gap: 1rem;
+        align-items: center;
+        img {
+            max-width: 50px;
+        }
+        header {
+            font-size: 1rem;
+            padding-bottom: 3px;
+        }
+    }
+    ul>li:last-child {
+        border: none;
+        padding-bottom: 0;
+    }
+    ul>li.NoFlexAutoAligning {
+        align-items: start;
+        p {
+            padding-bottom: 1px;
+        }
+    }
+}
+
+.subHeaderCV {
+    font-size: 0.9rem;
+    margin-bottom: 3px;
+}
+
+.NoFlexAutoAligning {
+    align-items: start;
+    ;
+}
+
+.subDescr {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--fontAccent);
+    word-spacing: 1px;
+}
+
+form {
+    max-width: 60%;
+    border: 1px solid var(--lightGrey);
+    margin: 0 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    section {
+        display: flex;
+        margin-bottom: 1rem;
+        gap: 1rem;
+    }
+    section>span {
+        width: 100%;
+        label {
+            display: block;
+            padding-bottom: 6px;
+            font-weight: 300;
+        }
+        input {
+            padding: 8px 12px;
+            width: 100%;
+            outline: transparent;
+        }
+        input:focus {
+            border: 2px solid #00A6A6;
+            outline: transparent;
+        }
+        select {
+            width: 100%;
+            padding: 8px 0 8px 4px;
+            border: 2px solid #00A6A6;
+            outline: transparent;
+            border-radius: 5px;
+        }
+    }
+    #message {
+        width: 100%;
+        resize: none;
+        padding: 8px;
+        outline: transparent;
+    }
+    #message:focus {
+        border: 2px solid #00A6A6;
+    }
+    input[type="submit"] {
+        padding: 8px 24px;
+        border-radius: 5px;
+        cursor: pointer;
+        color: black;
+        outline: transparent;
+        width: max-content;
+        background-color: #00A6A6;
+        border: 1px solid var(--lightGrey);
+    }
+    input[type="checkbox"] {
+        width: max-content;
+        margin-right: 3px;
+    }
+    input[value="Email is verstuurd!"] {
+        padding: 6px 12px;
+        border: none;
+        width: max-content;
+        border: 2px solid #00A6A6;
+        border-radius: 5px;
+    }
+    input[value="Er is een fout opgetreden. Probeer het later nog eens."] {
+        padding: 6px 12px;
+        border: none;
+        border: 2px solid var(--accent1);
+        border-radius: 5px;
+    }
+    input {
+        width: -webkit-fill-available;
+    }
+}
+
+.pricacy {
+    display: flex;
+    flex-flow: row-reverse;
+    justify-content: left;
+    gap: 3px;
+    align-items: center;
+    label {
+        padding-bottom: 0;
+    }
+}
+
+.wrapper a {
+    color: #0026ff;
+}
+
+.portfolioGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1em;
+    gap: 1rem;
+    a {
+        color: #040403;
+    }
+}
+
+figure>img {
+    max-width: 100%;
+    display: block;
+    position: relative;
+}
+
+figure {
+    position: relative;
+}
+
+.portfolioGrid figcaption:hover,
+img:hover~figcaption {
+    opacity: 1
+}
+
+.portfolioGrid figcaption {
+    position: absolute;
+    width: 100%;
+    font-weight: bold;
+    bottom: 0;
+    transition: 500ms opacity;
+    opacity: 0;
+    height: 80px;
+    padding: 50px 10px 10px 10px;
+    background-image: linear-gradient(to top, rgb(255, 255, 255) 20%, rgb(255, 255, 255, 0));
+    bottom: 0;
+    header {
+        display: flex;
+        justify-content: space-between;
+        span:nth-child(2) {
+            font-weight: 300;
+            color: #040403;
+        }
     }
 }

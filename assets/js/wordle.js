@@ -6,6 +6,7 @@ let currentCol = 1;
 var isListening = false;
 let inputFields;
 let gameStatusOnline = true;
+const id = Math.floor(Math.random() * 100000000)
 
 window.onload = function() {
     for (let i = 0; i < 6; i++) {
@@ -39,37 +40,30 @@ function startGameListening() {
 }
 
 function endGame(wordToGuess, state) {
-
     const bord = document.querySelector(".WorldeGame");
     bord.querySelector('.gridBody').classList.add("fadeOut");
 
     setTimeout(function() {
-
         bord.querySelector('.gridBody').style.height = '1px';
-
     }, 1000)
 
 
     let divContainer = createHTMLforEndingPage(wordToGuess, state);
 
-
     setTimeout(function() {
 
-        bord.appendChild(divContainer);
+        bord.querySelector(".endingSection").appendChild(divContainer);
 
     }, 1000);
 
     console.log(wordToGuess);
-
 }
 
 function createHTMLforEndingPage(wordToGuess, state) {
-
     let div = document.createElement("div");
     div.classList.add('resultBody');
     let html;
     if (state) {
-
         let nameOfWord = (currentRow > 1) ? "pogingen" : "poging";
 
         html =
@@ -82,11 +76,7 @@ function createHTMLforEndingPage(wordToGuess, state) {
                 </header>
                 <p>In ${currentRow} ${nameOfWord}</p>
                 `;
-
-
         div.innerHTML = html;
-
-
     } else {
         html =
             `
@@ -106,6 +96,7 @@ function createHTMLforEndingPage(wordToGuess, state) {
 function gameLoop(event) {
     if (currentCol < 1) currentCol = 1;
     if (currentCol - 1 == currentModus) gameStatusOnline = false;
+    else gameStatusOnline = true;
 
     if (/^[a-zA-Z]$/.test(event.key) && currentCol <= currentModus && gameStatusOnline) {
         console.log('Game is processing');
@@ -126,8 +117,9 @@ function gameLoop(event) {
 
                 const url = "https://vqnderklein.nl/api/games/word";
                 const apiToken = 'Zeb2k8AhyWN3VduP9rcEH4jDtCvGfnYxzU6gmspX5RMaFq7KJSpx96XMVZsf8GB3YPmhaDHRAkvtgUFyWjJTuEznwdb27rS4eLQK';
-                const data = { word, row: currentRow, modus: currentModus };
+                const data = { word, row: currentRow, modus: currentModus, id: id };
 
+                console.log(data);
                 const xhr = new XMLHttpRequest();
                 xhr.open("POST", url, true);
                 xhr.setRequestHeader("Authorization", "Bearer " + apiToken);
@@ -136,12 +128,17 @@ function gameLoop(event) {
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                         const response = JSON.parse(xhr.responseText);
+
+                        console.log(response);
+
+                        if (response.status == "FAIL") gameStatusOnline = true;
+
                         if (response.status !== "OK" || response.information == " ") return;
 
                         if (response.guessedCorrectly === "Y") {
                             inputFields.forEach(inputField => {
                                 if (inputField.getAttribute('datatagrow') == currentRow) {
-                                    inputField.style.backgroundColor = 'green';
+                                    inputField.style.backgroundColor = '#a5d6a7';
 
                                 }
                             });

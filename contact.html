@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="/assets/img/favicon-light.svg" type="image/x-icon">
 
     <script src="/assets/js/core.js" defer></script>
-    <script src="/assets/js/app.js" defer></script>
+    <script src="/assets/js/contact-core.js" defer></script>
 
     <title>Contact • vqnderklein.nl </title>
 </head>
@@ -116,23 +116,67 @@
                         <li><a class="active" href="/contact">Contact</a></li>
                     </ul>
                 </header>
-                <h1>vqnderklein.nl</h1>
-                <p>vqnderklein.nl is een website gemaakt en ontworpen door Mathijs van der Klein. vqnderklein.nl is een verzameling van webapplicaties voor persoonlijk en publiekelijk gebruik. vqnderklein.nl is een constant veranderde website, duidelijk
-                    moet zijn dat het niet één website is. Alles wat te vinden is op de microsites van vqnderklein.nl is onder development van vqnderklein.nl.
-                </p>
-                <p>Veel van de applicaties zullen gevonden worden op de zogenoemde microsites van vqnderklein.nl, dit zijn websites die te bezoeken zijn op de verschillende subdomeinen van het hoofddomein (vqnderklein.nl) maar ook via het back-end domein
-                    (vqndr.nl) of via verschillende andere domeinen binnen het beheer van vqnderklein.nl.
-                </p>
-                <p>Bij het vinden van foutieve informatie, een bug of als er vragen zijn kan je altijd contact opnemen met de beheerders van vqnderklein.nl, te bereiken via hallo@vqnderklein.nl of direct naar één van de ontwikkelaars via thijs@vqnderklein.nl.</p>
+                <h1>Contact</h1>
+                <p>Ervaar je problemen, heb je vragen of heb je suggesties voor ons? Stuur een email naar hallo@vqnderklein.nl of vul het contactformulier in. Als u het formulier verstuurt gaat u akkoord met ons <a href="privacy">privacy beleid</a>, wat
+                    inhoudt dat u accepteert dat uw gegevens worden verzameld via het formulier en naar de beheeders worden verstuurd en gelezen.</p>
+                <form enctype="multipart/form-data">
 
-                <div id="grid_images"></div>
-                <div class="gridControls">
-                    <p>Gemaakt met de <a href="https://pexels.com" target="_blank">pexels api</a></p>
-                    <a onclick="CreateGrid()"><svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 256 256">
-                            <path fill="currentColor" d="M28 128a68.07 68.07 0 0 1 68-68h118.34l-17.17-17.17a4 4 0 0 1 5.66-5.66l24 24a4 4 0 0 1 0 5.66l-24 24a4 4 0 0 1-5.66-5.66L214.34 68H96a60.07 60.07 0 0 0-60 60a4 4 0 0 1-8 0m196-4a4 4 0 0 0-4 4a60.07 60.07 0 0 1-60 60H41.66l17.17-17.17a4 4 0 0 0-5.66-5.66l-24 24a4 4 0 0 0 0 5.66l24 24a4 4 0 1 0 5.66-5.66L41.66 196H160a68.07 68.07 0 0 0 68-68a4 4 0 0 0-4-4" />
-                        </svg>
-                    </a>
-                </div>
+                    <section>
+                        <span>
+                            <label for="firstName">Voornaam</label>
+                            <input type="text" required name="firstName" id="firstName" />
+                        </span>
+                        <span>
+                            <label for="lastName">Achternaam</label>
+                            <input type="text" required name="lastName" id="lastName" />
+                        </span>
+                    </section>
+
+                    <section>
+                        <span>
+                            <label for="email">Email</label>
+                            <input type="email" required name="email" id="email" />
+                        </span>
+                        <span></span>
+                    </section>
+
+                    <section>
+                        <span>
+                            <label for="aanhef">Aanhef</label>
+                            <select required name="aanhef" id="aanhef">
+                                <option value="Dhr.">Dhr.</option>
+                                <option value="Mvr.">Mvr.</option>
+                                <option value="X">X</option>
+                            </select>
+                        </span>
+                        <span></span>
+                    </section>
+
+                    <section>
+                        <span>
+                            <label for="subject">Onderwerp</label>
+                            <input required type="text" name="subject" id="subject" />
+                        </span>
+                    </section>
+
+                    <section>
+                        <span>
+                            <label for="message">Bericht</label>
+                            <textarea required name="message" id="message" rows="10"></textarea>
+                        </span>
+                    </section>
+
+                    <section>
+                        <span class="pricacy">
+                            <label for="privacy">Ik accepteer de <a href="privacy" target="_blank">privacy voorwaarden</a>.</label>
+                            <input type="checkbox" required name="privacy" id="pricacy"> 
+                          
+                        </span>
+                    </section>
+
+                    <input type="submit" value="Verstuur">
+                </form>
+
                 <footer>
                     <p><b> 2024 </b> • All rights reserved</p>
                     <b>vqnderklein.nl</b>
