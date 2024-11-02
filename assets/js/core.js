@@ -1,7 +1,7 @@
 function updateFavicon() {
     const favicon = document.getElementsByTagName("favicon");
     const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    favicon.href = darkMode ? "/assets/svg/favicon-light.svg" : "/assets/svg/favicon-dark.svg";
+    favicon.href = darkMode ? "/assets/svg/favicon-dark.svg" : "/assets/svg/favicon-light.svg";
 
 }
 
