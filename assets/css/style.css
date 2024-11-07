@@ -17,7 +17,7 @@
     --portfolioCount: '3';
 }
 
-nav>a>img {
+nav>a>picture>img {
     max-width: 300px;
 }
 
@@ -73,8 +73,8 @@ main>div {
 
 main>div>aside {
     padding-top: 1em;
-    height: max-content;
     border-radius: 5px 5px 0 0;
+    height: max-content;
     flex-basis: 400px;
     border: 1px solid var(--lightGrey);
     max-width: 400px;
@@ -762,5 +762,148 @@ img:hover~figcaption {
                 cursor: not-allowed;
             }
         }
+    }
+}
+
+#gameField {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    /* Adjust as needed */
+}
+
+.background {
+    background-image: url("/assets/img/gameBackground.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(4px);
+    z-index: 0;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+#gameField>*:not(.background):not(.overlay) {
+    position: relative;
+    z-index: 2;
+}
+
+@media screen and (max-width: 1500px) {
+    .wrapper>p {
+        max-width: 80%;
+    }
+    #grid_images,
+    .gridControls {
+        width: 80%;
+        max-height: 80%;
+    }
+    .portfolioGrid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .projectGrid {
+        grid-template-columns: repeat(2, 1fr)
+    }
+    form {
+        max-width: 100%;
+        input {
+            margin-top: -1px;
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    main>div {
+        max-width: 90%;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .wrapper>header {
+        height: 3rem;
+        ul>li {
+            padding: 0.3rem 0.5rem;
+            a.active::after {
+                bottom: -23px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .wrapper>p {
+        max-width: 95%;
+    }
+    #grid_images,
+    .gridControls {
+        max-width: 400px;
+    }
+    .wrapper>header {
+        height: 3rem;
+        ul>li {
+            padding: 0.2rem 0.4rem;
+            a.active::after {
+                bottom: -25px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    main>div {
+        flex-flow: column;
+        gap: 1rem;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    nav>a>picture>img {
+        max-width: 200px;
+    }
+    #grid_images {
+        max-width: 500px;
+        height: 500px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    nav>a>picture>img {
+        max-width: 50px;
+    }
+    #grid_images {
+        max-width: 300px;
+        height: 300px;
+    }
+    .subHeaderCV {
+        max-width: 200px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    #grid_images {
+        max-width: 250px;
+        height: 250px;
+    }
+    .gridControls {
+        max-width: 250px;
+    }
+    .subHeaderCV {
+        max-width: 150px;
     }
 }

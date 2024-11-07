@@ -8,4 +8,6 @@ function updateFavicon() {
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", updateFavicon);
 
 var date = new Date();
-document.querySelector("footer>p>b").innerHTML = date.getFullYear();
+
+if (document.querySelector("footer>p>b"))
+    document.querySelector("footer>p>b").innerHTML = date.getFullYear();
