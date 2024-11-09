@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 
-:root {
+ :root {
     --mainBackgroundColor: #fafafa;
     --font: #040403;
     --fontAccent: #838383;
@@ -60,6 +60,19 @@ nav>ul>li>a {
     color: var(--font);
 }
 
+nav>ul>li>a>svg {
+    transition: 500ms;
+}
+
+nav>ul>li:hover a>svg {
+    color: var(--secundaryDark);
+}
+
+main {
+    max-width: 100%;
+    overflow: hidden;
+}
+
 main>div {
     max-width: 70%;
     margin: auto;
@@ -105,64 +118,71 @@ span.socials>a {
     color: var(--secundary);
     text-decoration: none;
     padding: 0px 5px;
-     :hover {
-        color: #00A6A6;
-    }
+}
+
+span.socials>a:hover {
+    color: #00A6A6;
 }
 
 aside>ul {
     list-style-type: none;
-    a {
-        padding: 1em;
-        height: 60px;
-        display: flex;
-        text-decoration: none;
-        color: var(--fontAccent);
-        font-weight: 500;
-        transition: 800ms ease;
-        border-bottom: 1px solid var(--lightGrey);
-        justify-content: space-between;
-        align-items: center;
-    }
-    a:hover {
-        background-color: var(--lightGrey);
-        color: var(--font);
-    }
-    .portfolio::after {
-        content: var(--portfolioCount);
-        font-size: 20px;
-        border-radius: 50%;
-        color: var(--mainBackgroundColor);
-        min-width: 5px;
-        display: flex;
-        align-items: center;
-        transition: 500ms;
-        justify-content: center;
-        height: 20px;
-        background-color: var(--fontAccent);
-        float: right;
-        aspect-ratio: 1;
-        font-size: 13px;
-    }
-    a:hover.portfolio::after {
-        background-color: var(--mainBackgroundColor);
-        color: #040403;
-    }
+}
+
+aside>ul a {
+    padding: 1em;
+    height: 60px;
+    display: flex;
+    text-decoration: none;
+    color: var(--fontAccent);
+    font-weight: 500;
+    transition: 800ms ease;
+    border-bottom: 1px solid var(--lightGrey);
+    justify-content: space-between;
+    align-items: center;
+}
+
+aside>ul a:hover {
+    background-color: var(--lightGrey);
+    color: var(--font);
+}
+
+aside>ul .portfolio::after {
+    content: var(--portfolioCount);
+    font-size: 20px;
+    border-radius: 50%;
+    color: var(--mainBackgroundColor);
+    min-width: 5px;
+    display: flex;
+    align-items: center;
+    transition: 500ms;
+    justify-content: center;
+    height: 20px;
+    background-color: var(--fontAccent);
+    float: right;
+    aspect-ratio: 1;
+    font-size: 13px;
+}
+
+aside>ul a:hover .portfolio::after {
+    background-color: var(--mainBackgroundColor);
+    color: #040403;
 }
 
 .contactInformation {
     padding: 1rem;
     border-bottom: 1px solid var(--lightGrey);
-    p {
-        display: flex;
-        gap: 10px;
-        align-items: center;
-        font-weight: 300;
-        padding-bottom: 5px;
-    }
-    p>svg {
-        color: var(--secundaryDark);
-    }
+}
+
+.contactInformation p {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 300;
+    padding-bottom: 5px;
+}
+
+.contactInformation p>svg {
+    color: var(--secundaryDark);
 }
 
 .signin {
@@ -193,31 +213,36 @@ aside>ul {
     border-bottom: 1px solid var(--lightGrey);
     height: 4rem;
     overflow: hidden;
-    ul>li {
-        display: inline-flex;
-        padding: 1rem 1rem 2rem 1rem;
-        a {
-            color: var(--fontAccent);
-            text-decoration: none;
-            position: relative;
-            transition: 800ms ease;
-        }
-        a.active::after {
-            content: "";
-            width: 100%;
-            height: 3px;
-            bottom: -28px;
-            left: 0;
-            position: absolute;
-            background-color: #0026ff;
-        }
-        a.active {
-            color: var(--font);
-        }
-         :hover {
-            color: #040403;
-        }
-    }
+}
+
+.wrapper>header ul>li {
+    display: inline-flex;
+    padding: 1rem 1rem 2rem 1rem;
+}
+
+.wrapper>header ul>li a {
+    color: var(--fontAccent);
+    text-decoration: none;
+    position: relative;
+    transition: 800ms ease;
+}
+
+.wrapper>header ul>li a.active::after {
+    content: "";
+    width: 100%;
+    height: 3px;
+    bottom: -28px;
+    left: 0;
+    position: absolute;
+    background-color: #0026ff;
+}
+
+.wrapper>header ul>li a.active {
+    color: var(--font);
+}
+
+.wrapper>header ul>li :hover {
+    color: #040403;
 }
 
 .wrapper>h1 {
@@ -297,11 +322,12 @@ footer {
 }
 
 footer>p {
-    font-size: 200;
+    font-weight: 300;
     padding-bottom: 5px;
-    >b {
-        font-weight: normal;
-    }
+}
+
+footer>p>b {
+    font-weight: normal;
 }
 
 .WorldeGame input {
@@ -315,6 +341,7 @@ footer>p {
     justify-items: center;
     text-transform: uppercase;
     font-weight: bold;
+    text-align: center;
 }
 
 .gridBody::after {
@@ -425,58 +452,69 @@ section.WorldeGame {
     border-bottom: 0;
     border-right: 0;
     padding: 1rem;
-    header {
-        font-weight: bold;
-        font-size: 1.2rem;
-    }
-    .personal {
-        max-width: 600px;
-        padding-top: 5px;
-        line-height: 1.5;
-    }
-    ul {
-        padding: 1rem 0;
-    }
-    article {
-        margin: 1rem 0;
-        display: flex;
-        gap: 0.4rem 0.6rem;
-        flex-wrap: wrap;
-        max-width: 700px;
-        span {
-            padding: 6px 12px;
-            text-transform: lowercase;
-            color: black;
-            background-color: #cfcfcf;
-            border-radius: 8px;
-        }
-    }
-    ul>li {
-        list-style-type: none;
-        display: flex;
-        padding: 0.8rem 0em;
-        width: 400px;
-        border-bottom: 1px solid var(--lightGrey);
-        gap: 1rem;
-        align-items: center;
-        img {
-            max-width: 50px;
-        }
-        header {
-            font-size: 1rem;
-            padding-bottom: 3px;
-        }
-    }
-    ul>li:last-child {
-        border: none;
-        padding-bottom: 0;
-    }
-    ul>li.NoFlexAutoAligning {
-        align-items: start;
-        p {
-            padding-bottom: 1px;
-        }
-    }
+}
+
+.cv_item header {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.cv_item .personal {
+    max-width: 600px;
+    padding-top: 5px;
+    line-height: 1.5;
+}
+
+.cv_item ul {
+    padding: 1rem 0;
+}
+
+.cv_item article {
+    margin: 1rem 0;
+    display: flex;
+    gap: 0.4rem 0.6rem;
+    flex-wrap: wrap;
+    max-width: 700px;
+}
+
+.cv_item article span {
+    padding: 6px 12px;
+    text-transform: lowercase;
+    color: black;
+    background-color: #cfcfcf;
+    border-radius: 8px;
+}
+
+.cv_item ul>li {
+    list-style-type: none;
+    display: flex;
+    padding: 0.8rem 0em;
+    width: 400px;
+    border-bottom: 1px solid var(--lightGrey);
+    gap: 1rem;
+    align-items: center;
+}
+
+.cv_item ul>li img {
+    max-width: 50px;
+}
+
+.cv_item ul>li header {
+    font-size: 1rem;
+    padding-bottom: 3px;
+}
+
+.cv_item ul>li:last-child {
+    border: none;
+    padding-bottom: 0;
+}
+
+.cv_item ul>li.NoFlexAutoAligning {
+    align-items: start;
+}
+
+.cv_item ul>li.NoFlexAutoAligning p {
+    padding-bottom: 1px;
 }
 
 .subHeaderCV {
@@ -502,74 +540,87 @@ form {
     margin: 0 1rem;
     padding: 1rem;
     border-radius: 8px;
-    section {
-        display: flex;
-        margin-bottom: 1rem;
-        gap: 1rem;
-    }
-    section>span {
-        width: 100%;
-        label {
-            display: block;
-            padding-bottom: 6px;
-            font-weight: 300;
-        }
-        input {
-            padding: 8px 12px;
-            width: 100%;
-            outline: transparent;
-        }
-        input:focus {
-            border: 2px solid #00A6A6;
-            outline: transparent;
-        }
-        select {
-            width: 100%;
-            padding: 8px 0 8px 4px;
-            border: 2px solid #00A6A6;
-            outline: transparent;
-            border-radius: 5px;
-        }
-    }
-    #message {
-        width: 100%;
-        resize: none;
-        padding: 8px;
-        outline: transparent;
-    }
-    #message:focus {
-        border: 2px solid #00A6A6;
-    }
-    input[type="submit"] {
-        padding: 8px 24px;
-        border-radius: 5px;
-        cursor: pointer;
-        color: black;
-        outline: transparent;
-        width: max-content;
-        background-color: #00A6A6;
-        border: 1px solid var(--lightGrey);
-    }
-    input[type="checkbox"] {
-        width: max-content;
-        margin-right: 3px;
-    }
-    input[value="Email is verstuurd!"] {
-        padding: 6px 12px;
-        border: none;
-        width: max-content;
-        border: 2px solid #00A6A6;
-        border-radius: 5px;
-    }
-    input[value="Er is een fout opgetreden. Probeer het later nog eens."] {
-        padding: 6px 12px;
-        border: none;
-        border: 2px solid var(--accent1);
-        border-radius: 5px;
-    }
-    input {
-        width: -webkit-fill-available;
-    }
+}
+
+form section {
+    display: flex;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+form section>span {
+    width: 100%;
+}
+
+form section>span label {
+    display: block;
+    padding-bottom: 6px;
+    font-weight: 300;
+}
+
+form section>span input {
+    padding: 8px 12px;
+    width: 100%;
+    outline: transparent;
+}
+
+form section>span input:focus {
+    border: 2px solid #00A6A6;
+    outline: transparent;
+}
+
+form section>span select {
+    width: 100%;
+    padding: 8px 0 8px 4px;
+    border: 2px solid #00A6A6;
+    outline: transparent;
+    border-radius: 5px;
+}
+
+#message {
+    width: 100%;
+    resize: none;
+    padding: 8px;
+    outline: transparent;
+}
+
+#message:focus {
+    border: 2px solid #00A6A6;
+}
+
+input[type="submit"] {
+    padding: 8px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: black;
+    outline: transparent;
+    width: max-content;
+    background-color: #00A6A6;
+    border: 1px solid var(--lightGrey);
+}
+
+input[type="checkbox"] {
+    width: max-content;
+    margin-right: 3px;
+}
+
+input[value="Email is verstuurd!"] {
+    padding: 6px 12px;
+    border: none;
+    width: max-content;
+    border: 2px solid #00A6A6;
+    border-radius: 5px;
+}
+
+input[value="Er is een fout opgetreden. Probeer het later nog eens."] {
+    padding: 6px 12px;
+    border: none;
+    border: 2px solid var(--accent1);
+    border-radius: 5px;
+}
+
+input {
+    width: -webkit-fill-available;
 }
 
 .pricacy {
@@ -578,9 +629,10 @@ form {
     justify-content: left;
     gap: 3px;
     align-items: center;
-    label {
-        padding-bottom: 0;
-    }
+}
+
+.pricacy label {
+    padding-bottom: 0;
 }
 
 .wrapper a {
@@ -592,9 +644,10 @@ form {
     grid-template-columns: repeat(2, 1fr);
     padding: 1em;
     gap: 1rem;
-    a {
-        color: #040403;
-    }
+}
+
+.portfolioGrid a {
+    color: #040403;
 }
 
 figure>img {
@@ -620,21 +673,24 @@ img:hover~figcaption {
     opacity: 0;
     height: 140px;
     padding: 60px 10px 0 10px;
-    background-image: linear-gradient(to top, rgb(255, 255, 255) 20%, rgb(255, 255, 255, 0));
+    background-image: linear-gradient(to top, rgb(255, 255, 255) 20%, rgba(255, 255, 255, 0));
     bottom: 0;
-    header {
-        display: flex;
-        color: #0026ff;
-        justify-content: space-between;
-        span:nth-child(2) {
-            font-weight: 300;
-            color: #040403;
-        }
-    }
-    >p {
-        font-weight: 300;
-        margin-top: 5px;
-    }
+}
+
+.portfolioGrid figcaption header {
+    display: flex;
+    color: #0026ff;
+    justify-content: space-between;
+}
+
+.portfolioGrid figcaption header span:nth-child(2) {
+    font-weight: 300;
+    color: #040403;
+}
+
+.portfolioGrid figcaption>p {
+    font-weight: 300;
+    margin-top: 5px;
 }
 
 .resources>span {
@@ -681,88 +737,102 @@ img:hover~figcaption {
     gap: 1rem;
     grid-template-columns: repeat(3, 1fr);
     padding: 1rem;
-    .projectItem {
-        padding: 5px;
-        border: 1px solid #cfcfcf;
-        border-radius: 20px;
-        header {
-            padding: 1rem;
-            background-color: #00cccc;
-            border-radius: 15px;
-            .flexBox {
-                display: flex;
-                justify-content: space-between;
-                padding-bottom: 1.5rem;
-                align-items: center;
-            }
-            .flexBox.bckGr p {
-                padding: 6px 12px;
-                width: max-content;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-weight: 300;
-                font-size: 14px;
-                border-radius: 20px;
-                background-color: var(--mainBackgroundColor);
-            }
-            .smallHeader {
-                font-size: 15px;
-            }
-            .bigHeader {
-                font-size: 22px;
-                letter-spacing: 1px;
-                font-weight: 800;
-            }
-            .favicon img {
-                width: 30px;
-            }
-            .tags {
-                margin-top: 0.5rem;
-                display: flex;
-                gap: 5px;
-                flex-wrap: wrap;
-                .tag {
-                    padding: 6px 12px;
-                    border: 1px solid var(--font);
-                    border-radius: 15px;
-                    font-size: 12px;
-                    color: #040403;
-                }
-            }
-            .bookMark {
-                cursor: pointer;
-            }
-        }
-        footer {
-            margin-top: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0;
-            strong {
-                font-weight: 800;
-                color: var(--font);
-            }
-            p.updateDescr {
-                font-weight: 300;
-                padding-top: 2px;
-                font-size: 13px;
-                max-width: 70%;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                white-space: nowrap;
-            }
-            a {
-                padding: 8px 15px;
-                background-color: #040403;
-                color: #fafafa;
-                text-decoration: none;
-                border-radius: 15px;
-                cursor: not-allowed;
-            }
-        }
-    }
+}
+
+.projectGrid .projectItem {
+    padding: 5px;
+    border: 1px solid #cfcfcf;
+    border-radius: 20px;
+}
+
+.projectGrid .projectItem header {
+    padding: 1rem;
+    background-color: #00cccc;
+    border-radius: 15px;
+}
+
+.projectGrid .projectItem header .flexBox {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1.5rem;
+    align-items: center;
+}
+
+.projectGrid .projectItem header .flexBox.bckGr p {
+    padding: 6px 12px;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 300;
+    font-size: 14px;
+    border-radius: 20px;
+    background-color: var(--mainBackgroundColor);
+}
+
+.projectGrid .projectItem header .smallHeader {
+    font-size: 15px;
+}
+
+.projectGrid .projectItem header .bigHeader {
+    font-size: 22px;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+.projectGrid .projectItem header .favicon img {
+    width: 30px;
+}
+
+.projectGrid .projectItem header .tags {
+    margin-top: 0.5rem;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.projectGrid .projectItem header .tags .tag {
+    padding: 6px 12px;
+    border: 1px solid var(--font);
+    border-radius: 15px;
+    font-size: 12px;
+    color: #040403;
+}
+
+.projectGrid .projectItem header .bookMark {
+    cursor: pointer;
+}
+
+.projectGrid .projectItem footer {
+    margin-top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.projectGrid .projectItem footer strong {
+    font-weight: 800;
+    color: var(--font);
+}
+
+.projectGrid .projectItem footer p.updateDescr {
+    font-weight: 300;
+    padding-top: 2px;
+    font-size: 13px;
+    max-width: 70%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.projectGrid .projectItem footer a {
+    padding: 8px 15px;
+    background-color: #040403;
+    color: #fafafa;
+    text-decoration: none;
+    border-radius: 15px;
+    cursor: not-allowed;
 }
 
 #gameField {
@@ -770,7 +840,6 @@ img:hover~figcaption {
     overflow: hidden;
     width: 100%;
     height: 100vh;
-    /* Adjust as needed */
 }
 
 .background {
@@ -822,9 +891,9 @@ img:hover~figcaption {
     }
     form {
         max-width: 100%;
-        input {
-            margin-top: -1px;
-        }
+    }
+    form input {
+        margin-top: -1px;
     }
 }
 
@@ -837,12 +906,12 @@ img:hover~figcaption {
 @media screen and (max-width: 850px) {
     .wrapper>header {
         height: 3rem;
-        ul>li {
-            padding: 0.3rem 0.5rem;
-            a.active::after {
-                bottom: -23px;
-            }
-        }
+    }
+    .wrapper>header ul>li {
+        padding: 0.3rem 0.5rem;
+    }
+    .wrapper>header ul>li a.active::after {
+        bottom: -23px;
     }
 }
 
@@ -853,22 +922,98 @@ img:hover~figcaption {
     #grid_images,
     .gridControls {
         max-width: 400px;
+        height: 400px;
+    }
+    .gridControls {
+        height: max-content;
     }
     .wrapper>header {
         height: 3rem;
-        ul>li {
-            padding: 0.2rem 0.4rem;
-            a.active::after {
-                bottom: -25px;
-            }
-        }
+        display: flex;
+        justify-content: center;
+    }
+    .wrapper>header ul>li {
+        padding: 0.2rem 0.4rem;
+    }
+    .wrapper>header ul>li a.active::after {
+        bottom: -25px;
     }
 }
 
 @media screen and (max-width: 700px) {
     main>div {
         flex-flow: column;
+        gap: 0;
+    }
+    main>div>aside {
+        flex-basis: 0;
+        display: flex;
+        flex-flow: row-reverse;
+        border-bottom: 0;
         gap: 1rem;
+    }
+    .wrapper {
+        border-radius: 0;
+        border-top: 0;
+        border-top: 1px solid var(--lightGrey);
+    }
+    aside>ul:not(.contactInformation) li:nth-child(2)>a {
+        padding-left: 0;
+    }
+    aside>ul:not(.contactInformation) {
+        position: absolute;
+        top: -3rem;
+        padding-left: 0;
+        left: 0;
+    }
+    aside>ul:not(.contactInformation) a {
+        color: var(--mainBackgroundColor);
+    }
+    .contactInformation {
+        padding: 5px;
+        padding-top: 0;
+        border-bottom: 0;
+    }
+    span.socials a[href="mailto:thijs@vqnderklein.nl"] {
+        display: none;
+    }
+    .contactInformation p {
+        font-size: 15px;
+        gap: 5px;
+    }
+    .headerAside {
+        padding-right: 5px;
+        border-bottom: 0;
+        align-items: normal;
+    }
+    .headerAside>p>strong {
+        float: right;
+        text-align: right;
+        padding: 10px;
+        padding-top: 0;
+        font-size: 17px;
+    }
+    span.socials {
+        justify-content: right;
+        display: flex;
+        margin-top: -1.2rem;
+    }
+    .subTitle {
+        display: none;
+    }
+    .cartoonify {
+        display: none;
+    }
+    .signin,
+    .portfolio,
+    aside>ul:not(.contactInformation) li:last-child {
+        display: none;
+    }
+    aside>ul:not(.contactInformation) li:nth-child(2)>a {
+        border-bottom: none;
+    }
+    .cv_item ul>li {
+        max-width: 100%;
     }
 }
 
@@ -879,6 +1024,10 @@ img:hover~figcaption {
     #grid_images {
         max-width: 500px;
         height: 500px;
+    }
+    .projectGrid {
+        grid-template-columns: repeat(1, 1fr);
+        max-width: 340px;
     }
 }
 
@@ -893,6 +1042,113 @@ img:hover~figcaption {
     .subHeaderCV {
         max-width: 200px;
     }
+    form section {
+        display: block;
+    }
+    section>span:not(.pricacy) {
+        display: block;
+        margin-bottom: 1rem;
+    }
+    .wrapper>p.Alert {
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .wrapper>header ul>li:first-child {
+        display: none;
+    }
+    .wrapper>header ul {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+    }
+    .wrapper>header main>div {
+        max-width: 95%;
+    }
+    span.socials {
+        justify-content: left;
+    }
+    main>div>aside {
+        display: block;
+    }
+    .contactInformation {
+        clear: both;
+    }
+    .headerAside {
+        float: left;
+        clear: both;
+    }
+    .projectGrid {
+        grid-template-columns: repeat(1, 1fr);
+        max-width: 100%;
+    }
+    .WorldeGame input {
+        height: 100%;
+        width: 100%;
+        aspect-ratio: 1;
+    }
+    .keyboard-key {
+        width: 20px;
+        height: 20px;
+    }
+    aside>ul:not(.contactInformation) {
+        top: 0;
+        right: 1rem;
+        left: auto;
+    }
+    aside>ul:not(.contactInformation) a {
+        color: var(--fontAccent);
+        padding: 5px;
+        padding-top: 0;
+    }
+}
+
+@media screen and (max-width: 370px) {
+    .projectGrid .projectItem footer {
+        display: block;
+    }
+    .projectGrid .projectItem footer span:first-child {
+        margin-bottom: 1em;
+    }
+    .projectGrid .projectItem footer a {
+        display: block;
+        margin-top: 10px;
+        width: max-content;
+    }
+    .projectGrid .projectItem p.updateDescr {
+        max-width: 100%;
+    }
+    section.WorldeGame {
+        width: calc(100% - 2rem);
+    }
+    .keyboard-container {
+        padding: 10px;
+    }
+    .keyboard-key {
+        width: 20px;
+        height: 20px;
+        aspect-ratio: 1;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .wrapper>header ul {
+        gap: 0px;
+    }
+    section.WorldeGame {
+        width: calc(100% - 2rem);
+    }
+    .keyboard-container {
+        padding: 10px;
+    }
+    .keyboard-key {
+        width: 20px;
+        height: 20px;
+        aspect-ratio: 1;
+    }
 }
 
 @media screen and (max-width: 320px) {
@@ -905,5 +1161,12 @@ img:hover~figcaption {
     }
     .subHeaderCV {
         max-width: 150px;
+    }
+    aside>ul:not(.contactInformation) {
+        top: -3rem;
+        left: 0;
+    }
+    aside>ul:not(.contactInformation) a {
+        color: var(--mainBackgroundColor);
     }
 }

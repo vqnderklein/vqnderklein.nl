@@ -1,4 +1,5 @@
 
 .htaccess
 /.vscode
-/api
+config.php
+storage/

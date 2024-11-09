@@ -18,10 +18,14 @@ window.onload = function() {
     inputFields = document.querySelectorAll('.gridBody>input[type="text"]');
 
     function generateQwertyKeyboard() {
+        let backSpaceIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 24 24">
+	<path fill="currentColor" d="m11.054 15.308l2.6-2.6l2.6 2.6l.707-.708l-2.6-2.6l2.6-2.6l-.707-.708l-2.6 2.6l-2.6-2.6l-.708.708l2.6 2.6l-2.6 2.6zM9.173 19q-.383 0-.727-.166t-.565-.461L3 12l4.88-6.373q.223-.294.566-.46T9.173 5h10.212q.666 0 1.14.475T21 6.615v10.77q0 .666-.475 1.14t-1.14.475zM4.25 12l4.423 5.77q.096.114.221.172t.279.058h10.212q.269 0 .442-.173t.173-.443V6.616q0-.27-.173-.443T19.385 6H9.173q-.154 0-.279.058t-.221.173zm10.02 0" />
+</svg>`;
+
         const rows = [
             ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
             ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
-            ['z', 'x', 'c', 'v', 'b', 'n', 'm']
+            ['z', 'x', 'c', 'v', 'b', 'n', 'm', 'bc']
         ];
 
         const keyboardContainer = document.createElement('div');
@@ -33,30 +37,42 @@ window.onload = function() {
             row.forEach(key => {
                 const keyButton = document.createElement('button');
                 keyButton.classList.add('keyboard-key');
-                keyButton.textContent = key;
+
+
+
+                if (key === 'bc')
+                    keyButton.innerHTML = backSpaceIcon;
+                else
+                    keyButton.textContent = key;
+
                 keyButton.setAttribute('data-key', key);
 
                 keyButton.addEventListener('click', () => {
                     console.log(`Key pressed: ${key}`);
 
-                    const targetInput = document.querySelector(`input[datatagrow="${currentRow}"][datatagcol="${currentCol}"]`);
+                    if (key == 'bc' && currentCol > 0) {
+                        currentCol--;
+                        const targetInput = document.querySelector(`input[datatagrow="${currentRow}"][datatagcol="${currentCol}"]`);
+                        if (targetInput) targetInput.value = "";
+                        if (currentCol <= 0) currentCol = 1;
+                        return;
+                    } else {
+                        const targetInput = document.querySelector(`input[datatagrow="${currentRow}"][datatagcol="${currentCol}"]`);
 
-                    if (targetInput) {
-                        targetInput.value = key;
-                        currentCol++;
+                        if (targetInput) {
+                            targetInput.value = key;
+                            currentCol++;
 
-                        if (currentCol >= 6) {
-                            verifyWord()
+                            if (currentCol >= 6) {
+                                verifyWord()
+                            }
                         }
                     }
                 });
-
                 rowDiv.appendChild(keyButton);
             });
-
             keyboardContainer.appendChild(rowDiv);
         });
-
         return keyboardContainer;
     }
 
