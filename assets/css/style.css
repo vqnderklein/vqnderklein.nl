@@ -604,6 +604,19 @@ input[type="checkbox"] {
     margin-right: 3px;
 }
 
+#date {
+    margin-top: -1.5rem;
+}
+
+.cv_item>ul>li>div>header>a {
+    text-decoration: none;
+    color: #040403;
+}
+
+h3 {
+    padding: 0rem 1rem;
+}
+
 input[value="Email is verstuurd!"] {
     padding: 6px 12px;
     border: none;

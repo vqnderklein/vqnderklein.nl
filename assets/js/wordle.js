@@ -48,8 +48,6 @@ window.onload = function() {
                 keyButton.setAttribute('data-key', key);
 
                 keyButton.addEventListener('click', () => {
-                    console.log(`Key pressed: ${key}`);
-
                     if (key == 'bc' && currentCol > 0) {
                         currentCol--;
                         const targetInput = document.querySelector(`input[datatagrow="${currentRow}"][datatagcol="${currentCol}"]`);
@@ -90,7 +88,6 @@ gameField.addEventListener('click', function(event) {
 
 function stopGameListening() {
     isListening = false;
-    console.log('Game Listening stopped');
     window.removeEventListener('keydown', gameLoop);
 }
 
@@ -109,7 +106,6 @@ function endGame(wordToGuess, state) {
         bord.querySelector('.gridBody').style.height = '1px';
     }, 1000)
 
-
     let divContainer = createHTMLforEndingPage(wordToGuess, state);
 
     setTimeout(function() {
@@ -118,8 +114,6 @@ function endGame(wordToGuess, state) {
         bord.querySelector('.keyboard').style.display = 'none';
 
     }, 1000);
-
-    console.log(wordToGuess);
 }
 
 function createHTMLforEndingPage(wordToGuess, state) {
@@ -162,7 +156,6 @@ function gameLoop(event) {
     else gameStatusOnline = true;
 
     if (/^[a-zA-Z]$/.test(event.key) && currentCol <= currentModus && gameStatusOnline) {
-        console.log('Game is processing');
         const targetInput = document.querySelector(`input[datatagrow="${currentRow}"][datatagcol="${currentCol}"]`);
 
         if (targetInput) {
@@ -194,7 +187,6 @@ function verifyWord() {
     const apiToken = 'Zeb2k8AhyWN3VduP9rcEH4jDtCvGfnYxzU6gmspX5RMaFq7KJSpx96XMVZsf8GB3YPmhaDHRAkvtgUFyWjJTuEznwdb27rS4eLQK';
     const data = { word, row: currentRow, modus: currentModus, id: id };
 
-    console.log(data);
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Authorization", "Bearer " + apiToken);
@@ -203,8 +195,6 @@ function verifyWord() {
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             const response = JSON.parse(xhr.responseText);
-
-            console.log(response);
 
             if (response.status == "FAIL") gameStatusOnline = true;
 
@@ -264,32 +254,19 @@ function colorKeyBoard(response) {
     allKeys.forEach(key => {
 
         for (let i = 0; i < response.information.length; i++) {
-
-
             const partOfMessage = response.information[i].split(' ');
             const tag = partOfMessage[0];
             const color = partOfMessage[2];
 
-            console.log(key.textContent, "<", tag);
-
             if (tag == key.textContent) {
-
                 key.style.backgroundColor = color;
-
             }
-
         }
-
     });
-
-
 }
 
 function newGameIteration() {
-    console.log('New Game Iteration started');
     currentCol = 1;
     gameStatusOnline = true;
     currentRow++;
 }
-
-console.log('Game Listening');

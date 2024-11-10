@@ -26,10 +26,16 @@ if (!isset($headers['Authorization'])) {
 }
 
 $authHeader = $headers['Authorization'];
-list($type, $token) = explode(' ', $authHeader);
 
-if (strcasecmp($type, 'Bearer') !== 0 || $token !== Config::getApiKey()) {
-    http_response_code(403);
+if ($authHeader) {
+    list($type, $token) = explode(' ', $authHeader);
+
+    if (strcasecmp($type, 'Bearer') !== 0 || $token !== Config::getApiKey()) {
+        http_response_code(403);
+        echo json_encode(['error' => 'Invalid token']);
+        exit;
+    }
+} else {
     echo json_encode(['error' => 'Invalid token']);
     exit;
 }
