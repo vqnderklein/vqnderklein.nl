@@ -244,26 +244,86 @@ function verifyWord() {
 
     xhr.send(JSON.stringify(data));
     gameStatusOnline = true;
+}
 
+function SortInformationToColor(colorsArray) {
+    const colorLevels = {
+        "#ef9a9a": 1, // Red
+        "#ffcc80": 2, // Orange
+        "#a5d6a7": 3 // Green
+    };
+
+    const letterColors = {};
+
+    colorsArray.forEach(item => {
+        const [letter, color] = item.split(" = ");
+
+        if (!letterColors[letter] || colorLevels[color] > colorLevels[letterColors[letter]]) {
+            letterColors[letter] = color;
+        }
+    });
+
+    const result = Object.entries(letterColors).map(([letter, color]) => {
+        return { letter, color };
+    });
+
+    return result;
 }
 
 function colorKeyBoard(response) {
-
     const allKeys = document.querySelectorAll('.keyboard-key');
 
-    allKeys.forEach(key => {
+    const formattedColorTreeInformation = SortInformationToColor(response.information);
 
+    console.log(formattedColorTreeInformation)
+
+    allKeys.forEach(key => {
         for (let i = 0; i < response.information.length; i++) {
             const partOfMessage = response.information[i].split(' ');
-            const tag = partOfMessage[0];
-            const color = partOfMessage[2];
+            const tag = partOfMessage[0]; // The letter (tag) from the response
+            const color = partOfMessage[2]; // The color (hex value or name)
 
-            if (tag == key.textContent) {
-                key.style.backgroundColor = color;
+            const matchingItem = formattedColorTreeInformation.find(item => item.letter === tag);
+
+            if (matchingItem && matchingItem.color) {
+                if (tag === key.textContent && IsValidOperation(color, key.style.backgroundColor)) {
+                    key.style.backgroundColor = matchingItem.color;
+                }
             }
         }
     });
 }
+
+function IsValidOperation(new_color, cur_color) {
+    const colorLevels = {
+        "": 0, // Default empty color level
+        "#ef9a9a": 1, // Red
+        "#ffcc80": 2, // Orange
+        "#a5d6a7": 3 // Green
+    };
+
+    cur_color = rgbToHex(cur_color);
+
+    if (colorLevels[cur_color] === undefined || colorLevels[new_color] === undefined) {
+        return false;
+    }
+
+    console.log(colorLevels[new_color], colorLevels[cur_color], colorLevels[new_color] >= colorLevels[cur_color])
+
+    return colorLevels[new_color] >= colorLevels[cur_color];
+}
+
+function rgbToHex(rgb) {
+    const result = rgb.match(/^rgb\((\d+), (\d+), (\d+)\)$/);
+    if (!result) return rgb;
+
+    const r = parseInt(result[1]).toString(16).padStart(2, '0');
+    const g = parseInt(result[2]).toString(16).padStart(2, '0');
+    const b = parseInt(result[3]).toString(16).padStart(2, '0');
+
+    return `#${r}${g}${b}`;
+}
+
 
 function newGameIteration() {
     currentCol = 1;

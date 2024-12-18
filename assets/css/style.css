@@ -1117,6 +1117,13 @@ img:hover~figcaption {
         padding: 5px;
         padding-top: 0;
     }
+    .wrapper>header ul>li a.active::after {
+        bottom: -4px;
+        content: "";
+        position: absolute;
+        height: 3px;
+        width: 100%;
+    }
 }
 
 @media screen and (max-width: 370px) {
