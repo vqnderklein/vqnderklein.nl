@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 * {
     padding: 0;
     margin: 0;
@@ -886,6 +886,203 @@ img:hover~figcaption {
     z-index: 2;
 }
 
+
+/* Portfolio Design */
+
+.container {
+    position: relative;
+    margin: 1rem;
+    margin-bottom: 100rem;
+}
+
+.top {
+    width: 80%;
+    height: 500px;
+    background-color: #bdd2ff;
+    overflow: visible;
+    display: flex;
+    align-items: end;
+    padding: 10px;
+    font-family: "Roboto";
+    font-weight: 300;
+}
+
+.top::after {
+    content: "";
+    border-radius: 15px;
+    display: block;
+    width: 85%;
+    background-size: cover;
+    background-position: left;
+    height: 500px;
+    background-image: url('/assets/img/autorijschoolkelly.nl-homeHeader.png');
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+    z-index: 2;
+}
+
+.container>article {
+    max-width: 90%;
+    border-radius: 0 15px 15px 0;
+    left: 9%;
+    position: relative;
+    z-index: 0;
+    background-color: #ced4ff;
+    padding: 1rem;
+    padding-top: 5rem;
+}
+
+.container article header {
+    font-weight: 900;
+    font-family: Poppins;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    padding-bottom: 1rem;
+    font-size: 45px;
+}
+
+.subGridClass {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 2fr 1fr;
+}
+
+.descriptionHolder {
+    margin: 0 -1rem -1rem -1rem;
+    padding: 1rem 1rem 1rem 0;
+    border-top-right-radius: 20px;
+    background-color: var(--mainBackgroundColor);
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+.projectDetails {
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+}
+
+.subGridClass .bar {
+    padding: 1.5rem;
+    width: 100%;
+    position: relative;
+    background-color: #909fff;
+    border-radius: 18px;
+}
+
+.subGridClass .textfield {
+    height: calc(100% - 3rem);
+    margin-top: 1rem;
+    width: 100%;
+    position: relative;
+    background-color: #909fff;
+    border-radius: 18px 18px 0 0;
+}
+
+a.visit {
+    background-color: #0026ff;
+    padding: 8px 24px;
+    display: block;
+    width: max-content;
+    color: white;
+    text-decoration: none;
+    font-weight: 300;
+    border-radius: 8px;
+    margin-top: 1rem;
+    border: 2px solid #0026ff;
+    transition: 500ms;
+}
+
+a.visit:hover {
+    background-color: transparent;
+    border: 2px solid #0026ff;
+    color: #0026ff;
+}
+
+.projectDetails p {
+    font-weight: 300;
+    padding-left: 1rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.projectDetails p:not(:first-child) {
+    padding-top: 8px;
+}
+
+.projectDetails p:not(.tag)::after {
+    position: absolute;
+    content: "";
+    height: 7px;
+    width: 7px;
+    z-index: 100;
+    background-color: #002B88;
+    left: 0;
+    right: 0;
+}
+
+.projectDetails strong {
+    font-weight: 700;
+    font-size: 17px;
+    margin-bottom: 5px;
+    font-family: Poppins;
+}
+
+.projectDetails ul>li:nth-child(1n) {
+    padding-bottom: 8px;
+}
+
+.projectDetails ul>li:nth-child(2n):not(:last-child) {
+    padding-bottom: 16px;
+}
+
+p.tag {
+    padding: 6px 12px;
+    width: max-content;
+    font-size: 15px;
+    border-radius: 8px;
+    font-weight: 300;
+    color: #002B88;
+    border: 1px solid #002B88;
+}
+
+li.flexBox {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.descriptionHolder>article {
+    display: flex;
+    padding-left: 0;
+    align-items: center;
+}
+
+.descriptionHolder strong {
+    font-size: 22px;
+    font-weight: 600;
+    font-family: Poppins;
+}
+
+.descriptionHolder p {
+    display: block;
+    padding-top: 8px;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+@media screen and (max-width: 1600px) {
+    .top::after {
+        height: 400px;
+    }
+    .top {
+        height: 400px;
+    }
+}
+
 @media screen and (max-width: 1500px) {
     .wrapper>p {
         max-width: 80%;
@@ -908,11 +1105,124 @@ img:hover~figcaption {
     form input {
         margin-top: -1px;
     }
+    .descriptionHolder {
+        display: block;
+    }
+    .subGridClass .bar {
+        max-width: 175px;
+        left: 0;
+        float: right;
+        margin-top: -3.5rem;
+        border-radius: 10px;
+        height: 39px;
+        overflow: hidden;
+        padding: 0;
+    }
+    .subGridClass .textfield {
+        height: 150px;
+        margin-bottom: -1rem;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .top::after {
+        height: 300px;
+        left: 1rem;
+        width: calc(100% - 2rem);
+        top: 3rem;
+    }
+    .top {
+        width: 100%;
+        height: 300px;
+        align-items: start;
+    }
+    .container>article {
+        max-width: calc(100% - 4rem);
+        left: 2rem;
+    }
+    .subGridClass {
+        grid-template-columns: 60% 40%;
+    }
+    .subGridClass .bar {
+        float: left;
+        margin-top: 1rem;
+        border-radius: 0;
+        background-color: #6075ff;
+        border-bottom-right-radius: 15px;
+        border: 1px solid white;
+        ;
+        z-index: 1;
+        margin-top: 0;
+        height: 39px;
+    }
+    .container article header {
+        font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .container article header {
+        font-size: 35px;
+    }
+    .subGridClass {
+        grid-template-columns: 1fr 1fr;
+    }
+    .subGridClass .bar {
+        max-width: 100%;
+        border-radius: 0;
+        border: 1px solid black;
+    }
+    .projectDetails {
+        align-items: start;
+    }
 }
 
 @media screen and (max-width: 1200px) {
     main>div {
         max-width: 90%;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .container article header {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .subGridClass {
+        display: flex;
+        flex-flow: column-reverse;
+    }
+    .projectDetails {
+        margin: -1rem;
+        background-color: #e3e7ff;
+    }
+    .projectDetails ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .projectDetails p:not(.tag)::after {
+        display: none;
+    }
+    .projectDetails p {
+        float: right;
+    }
+    li.flexBox {
+        justify-content: right;
+    }
+    .descriptionHolder {
+        border-radius: 0;
+    }
+    .projectDetails strong {
+        font-weight: 500;
+    }
+    .subGridClass .bar {
+        max-width: 175px;
+        float: right;
+        border-radius: 10px;
+        border: none;
     }
 }
 
@@ -925,6 +1235,13 @@ img:hover~figcaption {
     }
     .wrapper>header ul>li a.active::after {
         bottom: -23px;
+    }
+    .subGridClass .bar {
+        float: none;
+        margin-top: 1rem;
+    }
+    .container article header {
+        font-size: 28px;
     }
 }
 
@@ -951,6 +1268,28 @@ img:hover~figcaption {
     .wrapper>header ul>li a.active::after {
         bottom: -25px;
     }
+    .projectDetails ul {
+        display: block;
+    }
+    .projectDetails p:not(.tag)::after {
+        display: block;
+    }
+    .projectDetails p {
+        float: none;
+    }
+    .top::after {
+        width: 100%;
+        left: 0;
+    }
+    .container>article {
+        max-width: 100%;
+        left: 0;
+        margin-top: -1rem;
+    }
+    .subGridClass .bar {
+        float: right;
+        margin-top: -3.5rem;
+    }
 }
 
 @media screen and (max-width: 700px) {
@@ -972,8 +1311,9 @@ img:hover~figcaption {
     }
     aside>ul:not(.contactInformation) li:nth-child(2)>a {
         padding-left: 0;
+        color: white;
     }
-    aside>ul:not(.contactInformation) {
+    aside>ul:not(.contactInformation):not(.projectDetails>ul) {
         position: absolute;
         top: -3rem;
         padding-left: 0;
@@ -1028,6 +1368,29 @@ img:hover~figcaption {
     .cv_item ul>li {
         max-width: 100%;
     }
+    .top::after {
+        height: 300px;
+        left: 1rem;
+        width: calc(100% - 2rem);
+        top: 3rem;
+    }
+    .descriptionHolder {
+        display: grid;
+    }
+    .subGridClass .bar {
+        margin-top: 0;
+    }
+    .subGridClass .textfield {
+        margin-top: 3rem;
+        height: calc(100% - 3rem);
+    }
+    .projectDetails>ul {
+        display: block;
+        position: relative;
+    }
+    .container>article>section>.projectDetails>ul>li.flexBox {
+        display: flex;
+    }
 }
 
 @media screen and (max-width: 550px) {
@@ -1041,6 +1404,17 @@ img:hover~figcaption {
     .projectGrid {
         grid-template-columns: repeat(1, 1fr);
         max-width: 340px;
+    }
+    .descriptionHolder {
+        display: block;
+    }
+    .subGridClass .textfield {
+        height: 200px;
+        margin-top: 1rem;
+    }
+    .subGridClass .bar {
+        float: right;
+        margin-top: -3.5rem;
     }
 }
 
@@ -1066,6 +1440,18 @@ img:hover~figcaption {
         max-width: 100%;
         margin: 0;
         border-radius: 0;
+    }
+    .subGridClass .bar {
+        float: none;
+        float: right;
+        clear: both;
+        margin-top: 2rem;
+    }
+    .subGridClass .textfield {
+        float: left;
+    }
+    .container article header {
+        font-size: 18px;
     }
 }
 
@@ -1123,6 +1509,13 @@ img:hover~figcaption {
         position: absolute;
         height: 3px;
         width: 100%;
+    }
+    .container>article>section>.projectDetails>ul {
+        top: 0;
+        padding-left: 1rem;
+    }
+    li.flexBox {
+        justify-content: left;
     }
 }
 
@@ -1188,5 +1581,9 @@ img:hover~figcaption {
     }
     aside>ul:not(.contactInformation) a {
         color: var(--mainBackgroundColor);
+    }
+    .container>article>section>.projectDetails>ul {
+        top: 0;
+        padding-left: 0;
     }
 }
