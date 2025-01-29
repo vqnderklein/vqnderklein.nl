@@ -56,6 +56,10 @@ nav>ul {
     background-color: var(--secundary);
 }
 
+.hidden {
+    display: none;
+}
+
 nav>ul>li>a {
     color: var(--font);
 }
@@ -93,6 +97,29 @@ main>div>aside {
     max-width: 400px;
     flex-grow: 0;
     background-color: var(--mainBackgroundColor);
+}
+
+.overview {
+    background-color: var(--lightGrey);
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.overview img {
+    border-radius: 50%;
+    width: 60px;
+    aspect-ratio: 1;
+    transition: 500ms;
+}
+
+.overview img:hover {
+    transform: scale(1.1);
+}
+
+.overview a:nth-child(2) img {
+    border: 1px solid white;
 }
 
 .cartoonify {
@@ -207,6 +234,8 @@ aside>ul a:hover .portfolio::after {
     width: 100%;
     border-radius: 5px 5px 0 0;
     padding: 1em 0em;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .wrapper>header {
@@ -892,7 +921,12 @@ img:hover~figcaption {
 .container {
     position: relative;
     margin: 1rem;
-    margin-bottom: 100rem;
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.container:not(:last-child) {
+    border-bottom: 1px solid var(--fontAccent);
 }
 
 .top {
@@ -915,11 +949,73 @@ img:hover~figcaption {
     background-size: cover;
     background-position: left;
     height: 500px;
-    background-image: url('/assets/img/autorijschoolkelly.nl-homeHeader.png');
     position: absolute;
     top: 4rem;
     left: 4rem;
     z-index: 2;
+}
+
+.container.w4 .top::after {
+    background-image: url("/assets/img/baboesjka-home.png");
+}
+
+.container.w4>article {
+    background-color: #ffcfa8;
+}
+
+.container.w4 .top {
+    background-color: #fff0e4;
+}
+
+.container.w4 .bar,
+.container.w4 .textfield {
+    background-color: #ffc18e;
+}
+
+.container.w3 .top::after {
+    background-image: url("/assets/img/autorijschoolkelly.nl-homeHeader.png");
+}
+
+.container.w3>article {
+    background-color: #b0bcff;
+}
+
+.container.w3 .top {
+    background-color: #e3e7ff;
+}
+
+.container.w3 .bar,
+.container.w3 .textfield {
+    background-color: #8b9cff;
+}
+
+.container.w2 .top::after {
+    background-image: url("/assets/img/vanderploegzonwering.nl-homeHeader.jpg");
+}
+
+.container.w2>article {
+    background-color: rgb(166, 255, 149);
+}
+
+.container.w2 .top {
+    background-color: rgb(226, 255, 221);
+}
+
+.container.w1 .bar,
+.container.w1 .textfield {
+    background-color: rgb(255, 115, 110);
+}
+
+.container.w1 .top::after {
+    background-image: url("/assets/img/musicbyandy.nl-homeHeader.jpg");
+}
+
+.container.w1>article {
+    background-color: rgb(255, 194, 192);
+}
+
+.container.w1 .top {
+    background-color: rgb(255, 221, 220);
 }
 
 .container>article {
@@ -928,7 +1024,6 @@ img:hover~figcaption {
     left: 9%;
     position: relative;
     z-index: 0;
-    background-color: #ced4ff;
     padding: 1rem;
     padding-top: 5rem;
 }
@@ -937,9 +1032,11 @@ img:hover~figcaption {
     font-weight: 900;
     font-family: Poppins;
     text-transform: uppercase;
+    max-width: 100%;
+    overflow: hidden;
     letter-spacing: 0px;
     padding-bottom: 1rem;
-    font-size: 45px;
+    font-size: 2.5rem;
 }
 
 .subGridClass {
@@ -979,6 +1076,8 @@ img:hover~figcaption {
     position: relative;
     background-color: #909fff;
     border-radius: 18px 18px 0 0;
+    line-height: 1.5;
+    padding: 1rem;
 }
 
 a.visit {
@@ -1062,7 +1161,7 @@ li.flexBox {
 }
 
 .descriptionHolder strong {
-    font-size: 22px;
+    font-size: 1rem;
     font-weight: 600;
     font-family: Poppins;
 }
@@ -1157,13 +1256,13 @@ li.flexBox {
         height: 39px;
     }
     .container article header {
-        font-size: 40px;
+        font-size: 1.8rem;
     }
 }
 
 @media screen and (max-width: 1300px) {
     .container article header {
-        font-size: 35px;
+        font-size: 1.6rem;
     }
     .subGridClass {
         grid-template-columns: 1fr 1fr;
@@ -1182,11 +1281,20 @@ li.flexBox {
     main>div {
         max-width: 90%;
     }
+    .container article header {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .container article header {
+        font-size: 1.7rem;
+    }
 }
 
 @media screen and (max-width: 950px) {
     .container article header {
-        font-size: 30px;
+        font-size: 1.4rem;
     }
 }
 
@@ -1197,6 +1305,11 @@ li.flexBox {
     }
     .projectDetails {
         margin: -1rem;
+    }
+    .container.w4 .projectDetails {
+        background-color: #ffdcc0;
+    }
+    .container.w3 .projectDetails {
         background-color: #e3e7ff;
     }
     .projectDetails ul {
@@ -1241,7 +1354,7 @@ li.flexBox {
         margin-top: 1rem;
     }
     .container article header {
-        font-size: 28px;
+        font-size: 1.2rem;
     }
 }
 
@@ -1517,6 +1630,12 @@ li.flexBox {
     li.flexBox {
         justify-content: left;
     }
+    .overview img {
+        max-width: 50px;
+    }
+    .overview {
+        gap: 10px;
+    }
 }
 
 @media screen and (max-width: 370px) {
@@ -1561,6 +1680,9 @@ li.flexBox {
         width: 20px;
         height: 20px;
         aspect-ratio: 1;
+    }
+    .container article header {
+        font-size: 14px;
     }
 }
 
