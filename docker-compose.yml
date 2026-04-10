@@ -1,0 +1,43 @@
+services:
+  frontend:
+    build: ./frontend
+    command: npm run dev -- --host 0.0.0.0 --port 3000
+    ports:
+      - "3000:3000"
+    networks:
+      - web
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`test.vqndr.nl`)"
+      - "traefik.http.services.frontend.loadbalancer.server.port=3000"
+
+  backend:
+    build: ./backend
+    ports:
+      - "4000:3000"
+    networks:
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.api.rule=Host(`test.vqndr.nl`) && PathPrefix(`/api`)"
+      - "traefik.http.services.api.loadbalancer.server.port=3000"
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: appdb
+      MYSQL_USER: appuser
+      MYSQL_PASSWORD: apppass
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:
+
+networks:
+  web:
+    # external: true
