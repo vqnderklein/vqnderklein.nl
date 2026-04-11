@@ -62,6 +62,7 @@ jobs:
             MYSQL_DATABASE=appdb
             MYSQL_USER=appuser
             MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}
+            PEXELS_API_KEY=${{ secrets.PEXELS_API_KEY }}
             EOF
 
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u GH_USER --password-stdin

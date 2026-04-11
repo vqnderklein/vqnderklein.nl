@@ -11,7 +11,7 @@ export default defineConfig({
 	  },
 	  proxy: {
 		'/api': {
-		  target: 'http://backend:3000',
+		  target: 'http://backend:4000',
 		  changeOrigin: true
 		}
 	  }

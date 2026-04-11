@@ -12,10 +12,10 @@ const gridContainer = document.getElementById('grid_images');
 const GRID_ROWS = 5;
 const GRID_COLS = 5;
 const MIN_ITEMS = 4;
-let fetchInProgress = false; // Prevent duplicate fetch calls
+let fetchInProgress = false; 
 
 async function fetchRandomImages() {
-    if (fetchInProgress) return []; // Prevent double-fetching
+    if (fetchInProgress) return []; 
     fetchInProgress = true;
     const allImages = [];
 
@@ -31,7 +31,7 @@ async function fetchRandomImages() {
             }
             const data = await response.json();
             const images = data.photos.map(image => image.src.medium);
-            allImages.push(...images); // Combine all images from different pages
+            allImages.push(...images); 
         }
     } catch (error) {
         console.error('Failed to fetch images:', error.message);
@@ -44,9 +44,9 @@ async function fetchRandomImages() {
 function generateRandomLayout(rows, cols, minItems) {
     const layout = Array.from({ length: rows }, () => Array(cols).fill(0));
     let currentItem = 1;
-    let attempts = 0; // Counter to prevent infinite loops
+    let attempts = 0; 
 
-    while (!isGridFilled(layout) && attempts < 1000) { // Limit attempts to avoid infinite loop
+    while (!isGridFilled(layout) && attempts < 1000) { 
         const block = getRandomBlock(rows, cols);
         if (placeBlock(layout, block, currentItem)) {
             currentItem++;
@@ -115,7 +115,7 @@ async function renderGrid(layout) {
 
     if (images.length < uniqueItems.size) {
         console.warn("Not enough images to fill the grid uniquely.");
-        return; // Exit if not enough images
+        return; 
     }
 
     const usedImages = new Set();
@@ -135,7 +135,7 @@ async function renderGrid(layout) {
         let randomImage;
         do {
             randomImage = images[Math.floor(Math.random() * images.length)];
-        } while (usedImages.has(randomImage)); // Ensure image is unique
+        } while (usedImages.has(randomImage)); 
         usedImages.add(randomImage);
 
         gridItem.style.backgroundImage = `url(${randomImage})`;
@@ -160,13 +160,11 @@ function findGridItemPositions(layout, item) {
     return { rowStart, rowEnd, colStart, colEnd };
 }
 
-// Only a single definition of CreateGrid is needed
 function CreateGrid() {
     const layout = generateRandomLayout(GRID_ROWS, GRID_COLS, MIN_ITEMS);
     renderGrid(layout);
 }
 
-// Initialize grid when content is loaded
 window.addEventListener('DOMContentLoaded', () => {
     CreateGrid();
 });
