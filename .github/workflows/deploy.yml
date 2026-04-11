@@ -33,11 +33,14 @@ jobs:
       - name: Push backend
         run: docker push ghcr.io/${{ github.repository }}-backend:${{ github.sha }}
 
-      - name: Debug secrets
-        run: |
-          echo "HOST=${{ secrets.HOST }}"
-          echo "SSH_HOST=${{ secrets.SSH_HOST }}"
-          echo "SSH_USER=${{ secrets.SSH_USER }}"
+      - name: Copy docker-compose
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "docker-compose.yml"
+          target: "/opt/vqnderklein.nl/"
 
       - name: SSH deploy
         uses: appleboy/ssh-action@v1.0.3
@@ -45,6 +48,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "docker-compose.yml"
           script: |
             cd /opt/vqnderklein.nl/
 
