@@ -18,9 +18,6 @@ jobs:
       - name: Login to GHCR
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - name: Print all env vars
-        run: printenv
-
       - name: Build frontend
         run: |
           docker build -t ghcr.io/${{ github.repository }}-frontend:${{ github.sha }} ./frontend
@@ -34,6 +31,12 @@ jobs:
 
       - name: Push backend
         run: docker push ghcr.io/${{ github.repository }}-backend:${{ github.sha }}
+
+      - name: Debug secrets
+        run: |
+          echo "HOST=${{ secrets.HOST }}"
+          echo "SSH_HOST=${{ secrets.SSH_HOST }}"
+          echo "SSH_USER=${{ secrets.SSH_USER }}"
 
       - name: SSH deploy
         uses: appleboy/ssh-action@v1.0.3
