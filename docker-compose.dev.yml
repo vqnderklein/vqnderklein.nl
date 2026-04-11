@@ -11,12 +11,18 @@ services:
       - "traefik.http.services.app.loadbalancer.server.port=80"
 
   frontend:
-    image: ghcr.io/vqnderklein/vqnderklein.nl-frontend:${IMAGE_TAG}
+    build: ./frontend
+    command: npm run dev -- --host 0.0.0.0 --port 3000
+    ports:
+      - "3000:3000"
     networks:
       - web
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
 
   backend:
-    image: ghcr.io/vqnderklein/vqnderklein.nl-backend:${IMAGE_TAG}
+    build: ./backend
     networks:
       - web
 
@@ -35,4 +41,3 @@ volumes:
 
 networks:
   web:
-    external: true
