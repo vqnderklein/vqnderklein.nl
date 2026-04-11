@@ -11,8 +11,9 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.app.rule=Host(`test.vqndr.nl`)"
       - "traefik.http.routers.app.entrypoints=websecure"
-      - "traefik.http.routers.app.tls.certresolver=le"
+      - "traefik.http.routers.app.tls.certresolver=myresolver"
       - "traefik.http.services.app.loadbalancer.server.port=80"
+      - "traefik.http.routers.app.tls=true"
 
   frontend:
     image: ghcr.io/vqnderklein/vqnderklein.nl-frontend:${IMAGE_TAG}

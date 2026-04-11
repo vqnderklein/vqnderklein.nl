@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>Contact • vqnderklein.nl</title>
+</svelte:head>
+
 <h1>Contact</h1>
 <p>
 	Ervaart u problemen, heeft u vragen of heeft u suggesties voor ons? Stuur een email naar

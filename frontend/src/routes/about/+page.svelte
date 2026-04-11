@@ -4,6 +4,10 @@
 
 </script>
 
+<svelte:head>
+	<title>Over mij • vqnderklein.nl</title>
+</svelte:head>
+
 <h1>Over mij</h1>
 <p>
 	Haii, ik ben Mathijs, een twintigjarige student die al meer dan 5 jaar bezig is met

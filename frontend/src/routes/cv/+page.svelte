@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>CV • vqnderklein.nl</title>
+</svelte:head>
+
 <h1>CV</h1>
 <p>Sommige onderdelen zijn weggelaten om privacy overwegingen</p>
 <section class="cv_item">

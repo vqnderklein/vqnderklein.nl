@@ -3,6 +3,10 @@
     import AlertComponent from "$lib/components/alertComponent.svelte";
 </script>
 
+<svelte:head>
+	<title>Projects • vqnderklein.nl</title>
+</svelte:head>
+
 <h1>Projects</h1>
 <p>
 	Bekijk de projecten waar ik mee bezig ben, wat op de planning staat, welke updates in de maak zijn

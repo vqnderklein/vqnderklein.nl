@@ -47,7 +47,7 @@ jobs:
           source: "nginx/default.conf"
           target: "/opt/vqnderklein.nl/"
 
-      - name: SSH deploy
+      - name: Deploy
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}

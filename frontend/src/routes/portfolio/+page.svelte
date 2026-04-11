@@ -49,6 +49,10 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Portfolio • vqnderklein.nl</title>
+</svelte:head>
+
 <div class="overview">
 	<a href="#4">
 		<img
