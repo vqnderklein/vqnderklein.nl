@@ -48,11 +48,17 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "docker-compose.yml"
           script: |
             cd /opt/vqnderklein.nl/
 
-            echo "IMAGE_TAG=${{ github.sha }}" > .env
+            cat <<EOF > .env
+            IMAGE_TAG=${{ github.sha }}
+            MYSQL_ROOT_PASSWORD=$(openssl rand -hex 16)
+            MYSQL_DATABASE=appdb
+            MYSQL_USER=appuser
+            MYSQL_PASSWORD=$(openssl rand -hex 16)
+            IMAGE_TAG=${{ github.sha }}
+            EOF
 
             docker login ghcr.io -u GH_USER -p ${{ secrets.GHCR_PAT }}
 
