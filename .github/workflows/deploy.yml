@@ -39,8 +39,17 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "docker-compose.yml,nginx"
+          source: "docker-compose.yml"
           target: "/opt/vqnderklein.nl/"
+
+      - name: Copy nginx
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "nginx/default.conf"
+          target: "/opt/vqnderklein.nl/nginx/"
 
       - name: SSH deploy
         uses: appleboy/ssh-action@v1.0.3
