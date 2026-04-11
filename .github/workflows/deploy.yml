@@ -35,11 +35,11 @@ jobs:
       - name: SSH deploy
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /opt/app/${{ github.repository }}/
+            cd /opt/app/${{ github.repository }}
 
             echo "IMAGE_TAG=${{ github.sha }}" > .env
 
