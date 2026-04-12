@@ -31,7 +31,7 @@ export async function handleWordGame({ word, row, modus, id }) {
 		};
 	}
 
-	if (row >= modus) {
+	if (row >= modus + 1) {
 		await deleteSession(id);
 
 		return {

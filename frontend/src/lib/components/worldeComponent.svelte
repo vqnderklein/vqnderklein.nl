@@ -1,86 +1,149 @@
 <script lang="ts">
-	let grid = Array(6)
-		.fill(0)
-		.map(() => Array(5).fill(''));
+	type Cell = {
+		letter: string;
+		color: string;
+	};
+
+	let grid: Cell[][] = Array(6)
+		.fill(null)
+		.map(() =>
+			Array(5)
+				.fill(null)
+				.map(() => ({ letter: '', color: '' }))
+		);
 
 	let currentRow = 0;
 	let currentCol = 0;
+	let loading = false;
+	let gameOver = false;
+	let correctWord = '';
 
 	const id = Math.floor(Math.random() * 100000000);
 
 	async function submitWord() {
-		const word = grid[currentRow].join('');
+		if (loading || gameOver) return;
 
-		const res = await fetch('/api/wordle', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				word,
-				row: currentRow + 1,
-				modus: 5,
-				id
-			})
-		});
+		const word = grid[currentRow].map((c) => c.letter).join('');
+		if (word.length < 5) return;
 
-		const data = await res.json();
+		loading = true;
 
-		if (data.information) {
-			data.information.forEach((entry: string, index: number) => {
-				const [letter, , color] = entry.split(' ');
-
-				grid[currentRow][index].letter = letter;
-				grid[currentRow][index].color = color;
+		try {
+			const res = await fetch('/api/wordle', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					word,
+					row: currentRow + 1,
+					modus: 5,
+					id
+				})
 			});
-		}
 
-		if (data.guessedCorrectly === 'Y') {
-			alert('You win!');
-		} else {
+			const data = await res.json();
+
+			if (data.information) {
+				data.information.forEach((entry: string, index: number) => {
+					const [letter, , color] = entry.split(' ');
+
+					grid[currentRow][index] = {
+						letter,
+						color
+					};
+				});
+			}
+
+			if (data.guessedCorrectly === 'Y') {
+				gameOver = true;
+				correctWord = word;
+				return;
+			}
+
+			if (data.correctWord) {
+				gameOver = true;
+				correctWord = data.correctWord;
+				return;
+			}
+
 			currentRow++;
 			currentCol = 0;
+		} finally {
+			loading = false;
 		}
 	}
 
-	// function handleKey(key: string) {
-	// 	if (/^[a-z]$/.test(key) && currentCol < 5) {
-	// 		grid[currentRow][currentCol] = key;
-	// 		currentCol++;
-	// 	}
+	function resetGame() {
+		grid = Array(6)
+			.fill(null)
+			.map(() =>
+				Array(5)
+					.fill(null)
+					.map(() => ({ letter: '', color: '' }))
+			);
 
-	// 	if (key === 'Backspace' && currentCol > 0) {
-	// 		currentCol--;
-	// 		grid[currentRow][currentCol] = '';
-	// 	}
+		currentRow = 0;
+		currentCol = 0;
+		gameOver = false;
+		correctWord = '';
+	}
 
-	// 	if (currentCol === 5) {
-	// 		submitWord();
-	// 	}
-	// }
+	function handleKey(key: string) {
+		if (loading) return;
+
+		if (/^[a-z]$/.test(key) && currentCol < 5) {
+			grid[currentRow][currentCol].letter = key;
+			currentCol++;
+		}
+
+		if (key === 'Backspace' && currentCol > 0) {
+			currentCol--;
+			grid[currentRow][currentCol].letter = '';
+		}
+
+		if (key === 'Enter') {
+			submitWord();
+		}
+	}
 </script>
 
-<!-- <svelte:window on:keydown={(e) => handleKey(e.key)} /> -->
+<svelte:window on:keydown={(e) => handleKey(e.key)} />
 
 <section class="WorldeGame">
 	<header class="wordleHeader">
 		<h3>Raad het woord</h3>
-		<!-- <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 15 15">
-            <path fill="currentColor" fill-rule="evenodd" d="M1.5 3a.5.5 0 0 0 0 1h12a.5.5 0 0 0 0-1zM1 7.5a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 0 1h-12a.5.5 0 0 1-.5-.5m0 4a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 0 1h-12a.5.5 0 0 1-.5-.5" clip-rule="evenodd" />
-        </svg> -->
+
+		{#if loading}
+			<div class="loader"></div>
+		{/if}
 	</header>
-	<div class="gridBody">
-		{#each grid as row, rowIndex}
-			{#each row as cell, colIndex}
-				<input
-					class="cell"
-					bind:value={grid[rowIndex][colIndex].letter}
-					style="background-color: {cell.color}"
-					maxlength="1"
-					readonly
-				/>
-			{/each}
-		{/each}
+	<div class="gameWrapper">
+		<!-- GRID -->
+		<div class="gridContainer {gameOver ? 'hide' : ''}">
+			<div class="gridBody">
+				{#each grid as row, rowIndex}
+					{#each row as cell}
+						<input
+							class="cell"
+							value={cell.letter}
+							style="background-color: {cell.color}"
+							maxlength="1"
+							readonly
+						/>
+					{/each}
+				{/each}
+			</div>
+		</div>
+
+		<!-- RESULT SCREEN -->
+		{#if gameOver}
+			<div class="resultScreen">
+				<h2>Game Over</h2>
+				<p>Het juiste woord was:</p>
+				<h1>{correctWord}</h1>
+
+				<button on:click={resetGame}>Speel opnieuw</button>
+			</div>
+		{/if}
 	</div>
 	<div class="keyboard"></div>
 	<div class="endingSection"></div>
@@ -90,6 +153,21 @@
 </section>
 
 <style>
+	.loader {
+		width: 20px;
+		height: 20px;
+		border: 3px solid transparent;
+		border-top: 3px solid var(--fontAccent);
+		border-radius: 50%;
+		animation: spin 0.8s linear infinite;
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
 	.WorldeGame input {
 		height: 50px;
 		width: 50px;
@@ -161,6 +239,63 @@
 		color: var(--fontAccent);
 		z-index: 100;
 		position: relative;
+	}
+
+	.gameWrapper {
+		position: relative;
+		overflow: hidden;
+	}
+
+	/* Grid disappears */
+	.gridContainer {
+		transition:
+			transform 0.4s ease,
+			opacity 0.4s ease;
+	}
+
+	.gridContainer.hide {
+		transform: translateY(-40px);
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	/* Result screen */
+	.resultScreen {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -40px);
+		opacity: 0;
+		animation: fadeInResult 0.5s forwards;
+		text-align: center;
+	}
+
+	@keyframes fadeInResult {
+		to {
+			transform: translate(-50%, -50%);
+			opacity: 1;
+		}
+	}
+
+	.resultScreen h1 {
+		font-size: 2rem;
+		margin: 0.5rem 0;
+		text-transform: uppercase;
+	}
+
+	.resultScreen button {
+		margin-top: 1rem;
+		padding: 0.6rem 1rem;
+		border: none;
+		border-radius: 5px;
+		background: var(--secundaryDark);
+		color: white;
+		cursor: pointer;
+		transition: 100ms ease;
+	}
+
+	.resultScreen button:hover {
+		scale: 1.05;
 	}
 
 	@keyframes fadeOut {
