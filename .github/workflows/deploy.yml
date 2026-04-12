@@ -44,7 +44,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "backend/db/init/*"
+          source: "backend/db/init/."
           target: "/opt/vqnderklein.nl/db/init/"
 
       - name: Copy nginx
