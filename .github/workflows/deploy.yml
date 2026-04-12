@@ -59,9 +59,11 @@ jobs:
             cat <<EOF > .env
             IMAGE_TAG=${{ github.sha }}
             MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
-            MYSQL_DATABASE=appdb
-            MYSQL_USER=appuser
+            MYSQL_DATABASE=vqnderklein
+            MYSQL_USER=user
             MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}
+            MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
+            MYSQL_HOST=db
             PEXELS_API_KEY=${{ secrets.PEXELS_API_KEY }}
             SMTP_HOST=${{ secrets.SMTP_HOST }}
             SMTP_PORT=${{ secrets.SMTP_PORT }}
