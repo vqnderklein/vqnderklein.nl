@@ -1,3 +1,31 @@
+<script lang="ts">
+	let status = 'Versturen';
+
+	const handleContactFormSubmit = async (event: any) => {
+		const formData = new FormData(event.currentTarget);
+		const object = Object.fromEntries(formData);
+		const json = JSON.stringify(object);
+
+		console.log(json);
+
+		const response = await fetch('/api/send-message', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Accept: 'application/json'
+			},
+			body: json
+		});
+		const result = await response.json();
+		if (result.success) {
+			console.log(result);
+			status = result.message || 'Verstuurd!';
+		} else {
+			status = result.message || 'Versturen mislukt';
+		}
+	};
+</script>
+
 <svelte:head>
 	<title>Contact • vqnderklein.nl</title>
 </svelte:head>
@@ -9,7 +37,7 @@
 	met ons <a href="privacy">privacy beleid</a>, wat inhoudt dat u accepteert dat uw gegevens worden
 	verzameld via het formulier en naar de beheeders worden verstuurd en gelezen.
 </p>
-<form enctype="multipart/form-data">
+<form on:submit|preventDefault={handleContactFormSubmit}>
 	<section>
 		<span>
 			<label for="firstName">Voornaam</label>
@@ -65,7 +93,7 @@
 		</span>
 	</section>
 
-	<input type="submit" value="Verstuur" />
+	<input type="submit" value="{status}" />
 </form>
 
 <style>
