@@ -45,7 +45,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "backend/db/init/."
-          target: "/opt/vqnderklein.nl/db/init/"
+          target: "/opt/vqnderklein.nl/"
 
       - name: Copy nginx
         uses: appleboy/scp-action@v0.1.7
