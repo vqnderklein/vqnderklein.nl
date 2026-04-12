@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const API_KEY = process.env.BEARER_API_TOKEN;
+console.log("SMTP_HOST:", process.env.SMTP_HOST);
 
 app.use((req, res, next) => {
 	// const auth = req.headers.authorization;
