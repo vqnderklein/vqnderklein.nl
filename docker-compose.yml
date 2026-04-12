@@ -46,7 +46,7 @@ services:
       - internal
     volumes:
       - db_data:/var/lib/mysql
-      - ./backend/db/init:/docker-entrypoint-initdb.d:ro
+      - ./db/init:/docker-entrypoint-initdb.d:ro
 
 volumes:
   db_data:
