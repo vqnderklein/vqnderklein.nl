@@ -139,9 +139,30 @@
 		margin-right: 3px;
 	}
 
+	.pricacy {
+		display: flex;
+		flex-flow: row-reverse;
+		justify-content: left;
+		gap: 3px;
+		align-items: center;
+	}
+
+	.pricacy label {
+		padding-bottom: 0;
+	}
+
 	@media screen and (max-width: 1500px) {
 		form {
 			max-width: 100%;
+		}
+	}
+	@media screen and (max-width: 450px) {
+		form section {
+			display: block;
+		}
+		section > span:not(.pricacy) {
+			display: block;
+			margin-bottom: 1rem;
 		}
 	}
 </style>

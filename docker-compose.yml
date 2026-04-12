@@ -1,6 +1,7 @@
 services:
   nginx:
     image: nginx:alpine
+    container_name: vqnderklein-nginx
     networks:
       - web
       - internal
@@ -9,26 +10,30 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=web"
       - "traefik.http.routers.app.rule=Host(`test.vqndr.nl`)"
       - "traefik.http.routers.app.entrypoints=websecure"
       - "traefik.http.routers.app.tls.certresolver=myresolver"
-      - "traefik.http.services.app.loadbalancer.server.port=80"
       - "traefik.http.routers.app.tls=true"
+      - "traefik.http.services.app.loadbalancer.server.port=80"
 
   frontend:
     image: ghcr.io/vqnderklein/vqnderklein.nl-frontend:${IMAGE_TAG}
+    container_name: vqnderklein-frontend
     restart: unless-stopped
     networks:
       - internal
 
   backend:
     image: ghcr.io/vqnderklein/vqnderklein.nl-backend:${IMAGE_TAG}
+    container_name: vqnderklein-backend
     restart: unless-stopped
     networks:
       - internal
 
   db:
     image: mysql:8
+    container_name: vqnderklein-db
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}

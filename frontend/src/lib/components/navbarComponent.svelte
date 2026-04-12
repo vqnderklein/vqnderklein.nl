@@ -2,11 +2,7 @@
 	<a href="/">
 		<picture>
 			<source srcset="/img/favicon-dark.svg" media="(max-width:450px)" />
-			<img
-				src="/img/inloggen_003.png"
-				alt="vqnderklein logo"
-				title="vqnderklein.nl"
-			/>
+			<img src="/img/inloggen_003.png" alt="vqnderklein logo" title="vqnderklein.nl" />
 		</picture>
 	</a>
 	<ul>
@@ -75,5 +71,17 @@
 
 	nav > ul > li:hover a > svg {
 		color: var(--secundaryDark);
+	}
+
+	@media screen and (max-width: 550px) {
+		nav > a > picture > img {
+			max-width: 200px;
+		}
+	}
+
+	@media screen and (max-width: 450px) {
+		nav > a > picture > img {
+			max-width: 50px;
+		}
 	}
 </style>

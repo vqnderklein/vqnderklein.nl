@@ -52,11 +52,7 @@
 			</div>
 		</li>
 		<li>
-			<img
-				src="/img/DeBuitenburchtLogo.png"
-				alt="Buitenburcht Logo"
-				title="De Buitenburcht"
-			/>
+			<img src="/img/DeBuitenburchtLogo.png" alt="Buitenburcht Logo" title="De Buitenburcht" />
 			<div>
 				<header>De Buitenburcht</header>
 				<p class="subDescr">Aug. 2008 - Jun. 2018</p>
@@ -77,11 +73,7 @@
 			</div>
 		</li>
 		<li class="NoFlexAutoAligning">
-			<img
-				src="/img/Almeerplant.png"
-				alt="Almeerplant Logo"
-				title="Tuinwinkel Almeerplant"
-			/>
+			<img src="/img/Almeerplant.png" alt="Almeerplant Logo" title="Tuinwinkel Almeerplant" />
 			<div>
 				<header>Algemeen medewerker</header>
 				<p class="subHeaderCV">Tuinwinkel Almeerplant &bull; Parttime</p>
@@ -104,11 +96,7 @@
 	<header>Vrijwilliger</header>
 	<ul>
 		<li>
-			<img
-				src="/img/VVABLogo.jpg"
-				alt="VVAB Logo"
-				title="Volleybal Vereniging Almere Buiten"
-			/>
+			<img src="/img/VVABLogo.jpg" alt="VVAB Logo" title="Volleybal Vereniging Almere Buiten" />
 			<div>
 				<header>VVAB</header>
 				<p class="subHeaderCV">Scheidsrechter Commissie &bull; Aug. 2024 - Aug. 2025</p>
@@ -261,5 +249,11 @@
 		font-size: 0.9rem;
 		color: var(--fontAccent);
 		word-spacing: 1px;
+	}
+
+	@media screen and (max-width: 700px) {
+		.cv_item ul > li {
+			max-width: 100%;
+		}
 	}
 </style>

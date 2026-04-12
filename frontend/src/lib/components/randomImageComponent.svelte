@@ -161,18 +161,19 @@
 		<a href="https://pexels.com" target="_blank">Pexels API</a>
 	</p>
 
-	<a on:click={CreateGrid}>
+	<button on:click={CreateGrid} aria-label="Get new images">
 		<svg width="30" height="30" viewBox="0 0 256 256" aria-label="Get new images">
 			<path
 				fill="currentColor"
 				d="M28 128a68.07 68.07 0 0 1 68-68h118.34l-17.17-17.17a4 4 0 0 1 5.66-5.66l24 24a4 4 0 0 1 0 5.66l-24 24a4 4 0 0 1-5.66-5.66L214.34 68H96a60.07 60.07 0 0 0-60 60a4 4 0 0 1-8 0m196-4a4 4 0 0 0-4 4a60.07 60.07 0 0 1-60 60H41.66l17.17-17.17a4 4 0 0 0-5.66-5.66l-24 24a4 4 0 0 0 0 5.66l24 24a4 4 0 1 0 5.66-5.66L41.66 196H160a68.07 68.07 0 0 0 68-68a4 4 0 0 0-4-4"
 			/>
 		</svg>
-	</a>
+	</button>
 </div>
 
 <style>
 	.grid {
+		padding: 5px;
 		margin: 1em;
 		height: 600px;
 		width: 600px;
@@ -195,12 +196,43 @@
 		color: var(--fontAccent);
 	}
 
-	.gridControls a {
+	.gridControls button {
+		background-color: transparent;
+		border: none;
 		cursor: pointer;
 		color: #0026ff;
 	}
 
 	.grid-item {
 		border-radius: 4px;
+	}
+
+	@media screen and (max-width: 1500px) {
+		.grid,
+		.gridControls {
+			width: 80%;
+			max-height: 80%;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		.grid,
+		.gridControls {
+			max-width: 400px;
+			height: 400px;
+		}
+		.gridControls {
+			height: max-content;
+		}
+	}
+
+	@media screen and (max-width: 320px) {
+		.grid {
+			max-width: 250px;
+			height: 250px;
+		}
+		.gridControls {
+			max-width: 250px;
+		}
 	}
 </style>

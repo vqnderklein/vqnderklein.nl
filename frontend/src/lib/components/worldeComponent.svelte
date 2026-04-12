@@ -1,5 +1,4 @@
 <script lang="ts">
-
 	let grid = Array(6)
 		.fill(0)
 		.map(() => Array(5).fill(''));
@@ -136,10 +135,6 @@
 		justify-content: space-between;
 	}
 
-	.wordleHeader svg {
-		cursor: pointer;
-	}
-
 	.WorldeGame .gridBody {
 		display: grid;
 		margin-top: 1rem;
@@ -147,14 +142,6 @@
 		padding: 1em;
 		gap: 10px;
 		grid-template-columns: repeat(5, 1fr);
-	}
-
-	.resultBody {
-		padding: 1rem;
-		animation: fadeIn ease-in-out 2000ms forwards;
-		text-align: center;
-		padding-bottom: 8rem;
-		position: relative;
 	}
 
 	@keyframes fadeIn {
@@ -168,32 +155,12 @@
 		}
 	}
 
-	.resultBody header {
-		font-weight: bold;
-		font-size: 1.4rem;
-	}
-
-	.specialWorlde {
-		margin: 1rem;
-		padding: 1rem;
-		background-color: rgb(231, 231, 231, 40%);
-		text-align: center;
-		font-family: monospace;
-		font-weight: 200;
-		font-size: 20px;
-	}
-
 	.controls {
 		padding: 0.5rem;
 		border-top: 1px solid var(--fontAccent);
 		color: var(--fontAccent);
 		z-index: 100;
 		position: relative;
-	}
-
-	.fadeOut {
-		animation-delay: 5000ms;
-		animation: fadeOut ease-in-out 2000ms forwards;
 	}
 
 	@keyframes fadeOut {
@@ -204,6 +171,30 @@
 		100% {
 			transform: translateY(40px);
 			opacity: 0;
+		}
+	}
+
+	@media screen and (max-width: 400px) {
+		section.WorldeGame {
+			width: calc(100% - 2rem);
+		}
+
+		.WorldeGame input {
+			height: 100%;
+			width: 100%;
+			aspect-ratio: 1;
+		}
+	}
+
+	@media screen and (max-width: 370px) {
+		section.WorldeGame {
+			width: calc(100% - 2rem);
+		}
+	}
+
+	@media screen and (max-width: 350px) {
+		section.WorldeGame {
+			width: calc(100% - 2rem);
 		}
 	}
 </style>
