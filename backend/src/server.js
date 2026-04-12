@@ -3,6 +3,9 @@ import cors from 'cors';
 import wordleRouter from './routes/wordleRouter.js';
 import imageRouter from './routes/imageRouter.js';
 import mailerRouter from './routes/mailerRouter.js';
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
