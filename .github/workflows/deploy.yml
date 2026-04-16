@@ -1,0 +1,86 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [sveltekit-rework]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: deploy
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build frontend
+        run: |
+          docker build -t ghcr.io/${{ github.repository }}-frontend:${{ github.sha }} ./frontend
+          docker push ghcr.io/${{ github.repository }}-frontend:${{ github.sha }}
+
+      - name: Build backend
+        run: |
+          docker build -t ghcr.io/${{ github.repository }}-backend:${{ github.sha }} ./backend
+          docker push ghcr.io/${{ github.repository }}-backend:${{ github.sha }}
+
+      - name: Copy docker-compose
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "docker-compose.yml"
+          target: "/opt/vqnderklein.nl/"
+
+      - name: Copy db init files
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "backend/db/init/."
+          target: "/opt/vqnderklein.nl/"
+
+      - name: Copy nginx
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "nginx/default.conf"
+          target: "/opt/vqnderklein.nl/"
+
+      - name: Deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /opt/vqnderklein.nl/
+
+            cat <<EOF > .env
+            IMAGE_TAG=${{ github.sha }}
+            MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
+            MYSQL_DATABASE=vqnderklein
+            MYSQL_USER=user
+            MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}
+            MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}
+            MYSQL_HOST=db
+            PEXELS_API_KEY=${{ secrets.PEXELS_API_KEY }}
+            SMTP_HOST=${{ secrets.SMTP_HOST }}
+            SMTP_PORT=${{ secrets.SMTP_PORT }}
+            SMTP_USER=${{ secrets.SMTP_USER }}
+            SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}
+            EOF
+
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u GH_USER --password-stdin
+
+            docker compose pull
+            docker compose up -d --force-recreate --remove-orphans
