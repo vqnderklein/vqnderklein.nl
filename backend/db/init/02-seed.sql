@@ -1,4 +1,4 @@
-INSERT INTO `GuessTheWord` (`id`, `word`, `charCount`) VALUES
+INSERT INTO GuessTheWord (id, word, charCount) VALUES
 (1, 'Aadorp', 6),
 (2, 'Aafje', 5),
 (3, 'Aafjes', 6),

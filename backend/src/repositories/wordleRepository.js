@@ -1,36 +1,36 @@
 import { db } from '../db/db.js';
 
-export async function getRandomWord(modus) {
-	const [rows] = await db.query(
-		`SELECT word FROM GuessTheWord 
-         WHERE CHAR_LENGTH(word) = ? 
-         ORDER BY RAND() LIMIT 1`,
-		[modus]
-	);
+export function getRandomWord(modus) {
+    const rows = db
+        .prepare(
+            `SELECT word FROM GuessTheWord 
+             WHERE LENGTH(word) = ? 
+             ORDER BY RANDOM() LIMIT 1`
+        )
+        .all(modus);
 
-	return rows[0]?.word.toLowerCase();
+    return rows[0] ? rows[0].word.toLowerCase() : null;
 }
 
-export async function createSession(id, word) {
-	await db.query(
-		`INSERT INTO GameSessions (unique_id, generated_word)
-         VALUES (?, ?)`,
-		[id, word]
-	);
+export function createSession(id, word) {
+    db.prepare(
+        `INSERT INTO GameSessions (unique_id, generated_word)
+         VALUES (?, ?)`
+    ).run(id, word);
 }
 
-export async function getSession(id) {
-	const [rows] = await db.query(
-		`SELECT generated_word FROM GameSessions WHERE unique_id = ?`,
-		[id]
-	);
+export function getSession(id) {
+    const row = db
+        .prepare(
+            `SELECT generated_word FROM GameSessions WHERE unique_id = ?`
+        )
+        .get(id);
 
-	return rows[0]?.generated_word;
+    return row ? row.generated_word : null;
 }
 
-export async function deleteSession(id) {
-	await db.query(
-		`DELETE FROM GameSessions WHERE unique_id = ?`,
-		[id]
-	);
+export function deleteSession(id) {
+    db.prepare(
+        `DELETE FROM GameSessions WHERE unique_id = ?`
+    ).run(id);
 }

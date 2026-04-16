@@ -26,8 +26,6 @@ services:
   backend:
     build: ./backend
     container_name: vqnderklein-backend
-    depends_on:
-      - db
     networks:
       - web
     env_file: 
@@ -36,23 +34,6 @@ services:
       watch:
         - action: rebuild
           path: ./backend/src
-
-  db:
-    image: mysql:8
-    container_name: vqnderklein-db
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    networks:
-      - web
-    volumes:
-      - db_data:/var/lib/mysql
-      - ./backend/db/init:/docker-entrypoint-initdb.d
-
-volumes:
-  db_data:
 
 networks:
   web:
