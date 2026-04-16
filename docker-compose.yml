@@ -10,8 +10,9 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
+      - "traefik.http.routers.app.service=app"
       - "traefik.docker.network=web"
-      - "traefik.http.routers.app.rule=Host(`vqnderklein.nl`,`www.vqnderklein.nl`)"
+      - "traefik.http.routers.app.rule=Host(`vqnderklein.nl`) || Host(`www.vqnderklein.nl`)"
       - "traefik.http.middlewares.redirect-www.redirectregex.regex=^https?://www\\.(.*)"
       - "traefik.http.middlewares.redirect-www.redirectregex.replacement=https://$${1}"
       - "traefik.http.middlewares.redirect-www.redirectregex.permanent=true"
@@ -32,7 +33,7 @@ services:
     image: ghcr.io/vqnderklein/vqnderklein.nl-backend:${IMAGE_TAG}
     container_name: vqnderklein-backend
     restart: unless-stopped
-    env_file: 
+    env_file:
       - ./.env
     networks:
       - internal
