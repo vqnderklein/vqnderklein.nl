@@ -11,7 +11,11 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
-      - "traefik.http.routers.app.rule=Host(`test.vqndr.nl`)"
+      - "traefik.http.routers.app.rule=Host(`vqnderklein.nl`,`www.vqnderklein.nl`)"
+      - "traefik.http.middlewares.redirect-www.redirectregex.regex=^https?://www\\.(.*)"
+      - "traefik.http.middlewares.redirect-www.redirectregex.replacement=https://$${1}"
+      - "traefik.http.middlewares.redirect-www.redirectregex.permanent=true"
+      - "traefik.http.routers.app.middlewares=redirect-www"
       - "traefik.http.routers.app.entrypoints=websecure"
       - "traefik.http.routers.app.tls.certresolver=myresolver"
       - "traefik.http.routers.app.tls=true"
