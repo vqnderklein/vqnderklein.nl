@@ -2,7 +2,7 @@ name: Build & Deploy
 
 on:
   push:
-    branches: [sveltekit-rework]
+    branches: [main]
 
 permissions:
   contents: read
