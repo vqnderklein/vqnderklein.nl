@@ -1,36 +1,38 @@
 import { db } from '../db/db.js';
 
-export function getRandomWord(modus) {
-    const rows = db
-        .prepare(
-            `SELECT word FROM GuessTheWord 
-             WHERE LENGTH(word) = ? 
-             ORDER BY RANDOM() LIMIT 1`
-        )
-        .all(modus);
+const getRandomWordStmt = db.prepare(`
+    SELECT word FROM GuessTheWord 
+    WHERE LENGTH(word) = ? 
+    ORDER BY RANDOM() LIMIT 1
+`);
 
-    return rows[0] ? rows[0].word.toLowerCase() : null;
+export function getRandomWord(modus) {
+    const row = getRandomWordStmt.get(modus);
+    return row ? row.word.toLowerCase() : null;
 }
+
+const createSessionStmt = db.prepare(`
+    INSERT INTO GameSessions (unique_id, generated_word)
+    VALUES (?, ?)
+`);
 
 export function createSession(id, word) {
-    db.prepare(
-        `INSERT INTO GameSessions (unique_id, generated_word)
-         VALUES (?, ?)`
-    ).run(id, word);
+    createSessionStmt.run(id, word);
 }
 
-export function getSession(id) {
-    const row = db
-        .prepare(
-            `SELECT generated_word FROM GameSessions WHERE unique_id = ?`
-        )
-        .get(id);
+const getSessionStmt = db.prepare(`
+    SELECT generated_word FROM GameSessions WHERE unique_id = ?
+`);
 
+export function getSession(id) {
+    const row = getSessionStmt.get(id);
     return row ? row.generated_word : null;
 }
 
+const deleteSessionStmt = db.prepare(`
+    DELETE FROM GameSessions WHERE unique_id = ?
+`);
+
 export function deleteSession(id) {
-    db.prepare(
-        `DELETE FROM GameSessions WHERE unique_id = ?`
-    ).run(id);
+    deleteSessionStmt.run(id);
 }

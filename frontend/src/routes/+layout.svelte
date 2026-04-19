@@ -56,7 +56,7 @@
 
 	<link rel="preconnect" href="https://api.pexels.com/" />
 
-	<meta property="og:image" content="https://vqnderklein.nl/assets/img/inloggen_002.png" />
+	<meta property="og:image" content="https://vqnderklein.nl/img/inloggen_002.png" />
 	<meta property="og:title" content="Het begin van jouw online avontuur" />
 	<meta
 		property="og:description"
