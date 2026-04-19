@@ -1,6 +1,5 @@
 <script lang="ts">
-	import favicon from '$lib/assets/favicon.svg';
-	import { afterNavigate, onNavigate } from '$app/navigation';
+	import { onNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
 
 	import '../global.css';
