@@ -12,8 +12,8 @@ on:
 
 jobs:
   frontend:
-  name: Frontend Build
-  runs-on: ubuntu-latest
+    name: Frontend Build
+    runs-on: ubuntu-latest
 
   defaults:
     run:
