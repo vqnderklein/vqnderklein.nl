@@ -22,9 +22,8 @@
 		});
 	});
 
-
 	let darkMode = $state(false);
-	
+
 	onMount(() => {
 		const media = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -42,8 +41,8 @@
 	<link
 		rel="icon"
 		href={darkMode
-			? '/img/favicon-dark.svg'
-			: '/img/favicon-light.svg'}
+			? '/img/favicon-light.svg'
+			: '/img/favicon-dark.svg'}
 	/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="author" content="Mathijs van der Klein" />
