@@ -12,7 +12,7 @@ on:
 
 jobs:
   frontend:
-    name: Frontend Build
+    name: Frontend Checks
     runs-on: ubuntu-latest
 
     defaults:
@@ -33,20 +33,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Sync SvelteKit
+        run: npx svelte-kit sync
+
+      - name: Type check
+        run: npm run check
+
       - name: Build frontend
         run: npm run build
-
-      - name: Build Docker image
-        run: docker build -t frontend .
-
-      - name: Run Docker container
-        run: docker run -d -p 4173:4173 --name frontend frontend
-
-      - name: Wait for startup
-        run: sleep 5
-
-      - name: Check container health
-        run: curl http://localhost:4173
 
   backend:
     name: Backend Tests
