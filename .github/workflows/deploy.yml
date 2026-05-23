@@ -30,7 +30,7 @@ jobs:
           docker push ghcr.io/${{ github.repository }}-backend:${{ github.sha }}
 
       - name: Copy docker-compose
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
@@ -39,7 +39,7 @@ jobs:
           target: "/opt/vqnderklein.nl/"
 
       - name: Copy db init files
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
@@ -48,7 +48,7 @@ jobs:
           target: "/opt/vqnderklein.nl/"
 
       - name: Copy nginx
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
