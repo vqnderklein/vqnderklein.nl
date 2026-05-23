@@ -23,8 +23,8 @@
 	});
 
 
-	let darkMode = false;
-
+	let darkMode = $state(false);
+	
 	onMount(() => {
 		const media = window.matchMedia('(prefers-color-scheme: dark)');
 

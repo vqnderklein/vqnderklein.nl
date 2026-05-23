@@ -1,0 +1,81 @@
+{
+    "extends": [
+      "config:recommended"
+    ],
+  
+    "timezone": "Europe/Amsterdam",
+  
+    "schedule": [
+      "after 8am every monday",
+      "after 8am every wednesday",
+      "after 8am every friday"
+    ],
+  
+    "minimumReleaseAge": "3 days",
+  
+    "dependencyDashboard": true,
+  
+    "labels": [
+      "dependencies"
+    ],
+
+    "requiredStatusChecks": [
+        "Frontend Build",
+        "Backend Tests"
+      ],
+  
+    "packageRules": [
+      {
+        "matchManagers": ["npm"],
+        "groupName": "npm dependencies",
+        "rangeStrategy": "bump"
+      },
+  
+      {
+        "matchManagers": ["composer"],
+        "groupName": "composer dependencies",
+        "rangeStrategy": "bump"
+      },
+  
+      {
+        "matchPackagePatterns": [
+          "svelte",
+          "@sveltejs/*",
+          "vite"
+        ],
+        "groupName": "Svelte ecosystem (core tooling)",
+        "automerge": false,
+        "minimumReleaseAge": "7 days"
+      },
+  
+      {
+        "matchPackageNames": ["typescript"],
+        "groupName": "TypeScript (manual review required)",
+        "automerge": false,
+        "minimumReleaseAge": "7 days",
+        "allowedVersions": "<6.0.0"
+      },
+  
+      {
+        "matchManagers": ["npm", "composer"],
+        "matchUpdateTypes": ["patch"],
+        "automerge": true
+      },
+  
+      {
+        "matchManagers": ["npm", "composer"],
+        "matchUpdateTypes": ["minor"],
+        "automerge": false
+      },
+  
+      {
+        "matchManagers": ["npm", "composer"],
+        "matchUpdateTypes": ["major"],
+        "dependencyDashboardApproval": true
+      }
+    ],
+  
+    "vulnerabilityAlerts": {
+      "enabled": true
+    }
+  }
