@@ -8,46 +8,45 @@ on:
 
   pull_request:
     branches:
-      - '*'
+      - "*"
 
 jobs:
   frontend:
     name: Frontend Build
     runs-on: ubuntu-latest
 
-  defaults:
-    run:
-      working-directory: ./frontend
+    defaults:
+      run:
+        working-directory: ./frontend
 
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Setup Node
-      uses: actions/setup-node@v4
-      with:
-        node-version: 22
-        cache: npm
-        cache-dependency-path: frontend/package-lock.json
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Build frontend
-      run: npm run build
+      - name: Build frontend
+        run: npm run build
 
-    - name: Build Docker image
-      run: docker build -t frontend .
+      - name: Build Docker image
+        run: docker build -t frontend .
 
-    - name: Run Docker container
-      run: docker run -d -p 4173:4173 --name frontend frontend
+      - name: Run Docker container
+        run: docker run -d -p 4173:4173 --name frontend frontend
 
-    - name: Wait for startup
-      run: sleep 5
+      - name: Wait for startup
+        run: sleep 5
 
-    - name: Check container health
-      run: curl http://localhost:4173
-
+      - name: Check container health
+        run: curl http://localhost:4173
 
   backend:
     name: Backend Tests
