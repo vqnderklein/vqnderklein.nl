@@ -1,8 +1,10 @@
 name: Build & Deploy
 
 on:
-  push:
-    branches: [main]
+  workflow_run:
+    workflows: ["Tests"]
+    types:
+      - completed
 
 permissions:
   contents: read
@@ -10,6 +12,8 @@ permissions:
 
 jobs:
   deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
     runs-on: ubuntu-latest
     environment: deploy
 
@@ -66,7 +70,7 @@ jobs:
             cd /opt/vqnderklein.nl/
 
             cat <<EOF > .env
-            IMAGE_TAG=${{ github.sha }}
+            IMAGE_TAG=${{ github.event.workflow_run.head_sha }}
             PEXELS_API_KEY=${{ secrets.PEXELS_API_KEY }}
             SMTP_HOST=${{ secrets.SMTP_HOST }}
             SMTP_PORT=${{ secrets.SMTP_PORT }}
