@@ -4,10 +4,10 @@
 
 	import '../global.css';
 
-	import NavbarComponent from '$lib/components/navbarComponent.svelte';
-	import BackgroundComponent from '$lib/components/backgroundComponent.svelte';
-	import SidenavbarComponent from '$lib/components/sidenavbarComponent.svelte';
-	import MainComponent from '$lib/components/mainComponent.svelte';
+	import NavbarComponent from '#lib/components/navbarComponent.svelte';
+	import BackgroundComponent from '#lib/components/backgroundComponent.svelte';
+	import SidenavbarComponent from '#lib/components/sidenavbarComponent.svelte';
+	import MainComponent from '#lib/components/mainComponent.svelte';
 
 	let { children } = $props();
 
@@ -38,12 +38,7 @@
 
 <svelte:head>
 	<title>Het begin van jouw online avontuur • vqnderklein.nl</title>
-	<link
-		rel="icon"
-		href={darkMode
-			? '/img/favicon-light.svg'
-			: '/img/favicon-dark.svg'}
-	/>
+	<link rel="icon" href={darkMode ? '/img/favicon-light.svg' : '/img/favicon-dark.svg'} />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="author" content="Mathijs van der Klein" />
 	<meta name="keywords" content="Portfolio Persoonlijk Webdevelopment Projects Informatief" />

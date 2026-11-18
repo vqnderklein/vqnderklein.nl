@@ -85,9 +85,9 @@
 			<a href="/privacy">Privacy Statement</a>
 		</li>
 	</ul>
-	<a class="signin" href="https://inloggen.vqnderklein.nl" target="_blank"
-		>Login op vqnderklein.nl</a
-	>
+	<a class="signin" href="https://inloggen.vqnderklein.nl" target="_blank">
+		Login op vqnderklein.nl
+	</a>
 </aside>
 
 <style>
@@ -136,7 +136,7 @@
 		color: var(--secundary);
 		text-decoration: none;
 		padding: 0px 5px;
-        transition: 500ms ease color;
+		transition: 500ms ease color;
 	}
 
 	span.socials > a:hover {

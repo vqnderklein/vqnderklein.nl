@@ -1,6 +1,6 @@
 <script>
-	import WorldeComponent from '$lib/components/worldeComponent.svelte';
-	import AlertComponent from '$lib/components/alertComponent.svelte';
+	import WorldeComponent from '#lib/components/worldeComponent.svelte';
+	import AlertComponent from '#lib/components/alertComponent.svelte';
 </script>
 
 <svelte:head>

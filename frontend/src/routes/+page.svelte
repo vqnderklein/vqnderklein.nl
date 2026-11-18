@@ -1,6 +1,5 @@
 <script>
-    import RandomImageComponent from "$lib/components/randomImageComponent.svelte";
-
+	import RandomImageComponent from '#lib/components/randomImageComponent.svelte';
 </script>
 
 <svelte:head>
@@ -25,8 +24,8 @@
 	opnemen met de beheerders van vqnderklein.nl, te bereiken via hallo@vqnderklein.nl, de <a
 		href="contact"
 	>
-		contact pagina</a
-	> of direct naar één van de ontwikkelaars via thijs@vqnderklein.nl.
+		contact pagina
+	</a> of direct naar één van de ontwikkelaars via thijs@vqnderklein.nl.
 </p>
 
 <RandomImageComponent></RandomImageComponent>

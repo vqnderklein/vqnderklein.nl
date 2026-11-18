@@ -5,8 +5,9 @@
 		xmlns:xlink="http://www.w3.org/1999/xlink"
 		viewBox="0 0 1422 800"
 		id="qqquad"
-		><g shape-rendering="crispEdges" stroke-linejoin="round" fill="#2979ff"
-			><polygon points="1422,100 1422,0 1244.25,100"></polygon><polygon
+	>
+		<g shape-rendering="crispEdges" stroke-linejoin="round" fill="#2979ff">
+			<polygon points="1422,100 1422,0 1244.25,100"></polygon><polygon
 				points="1066.5,0 1066.5,100 1244.25,0"
 			></polygon><polygon points="1244.25,100 1244.25,200 1066.5,200"></polygon><polygon
 				points="1422,100 1244.25,100 1422,200"
@@ -102,9 +103,9 @@
 				points="1244.25,700 1422,600 1244.25,600"
 			></polygon><polygon points="1066.5,600 1066.5,700 1244.25,700"></polygon><polygon
 				points="1244.25,800 1244.25,700 1066.5,800"
-			></polygon><polygon points="1422,700 1422,800 1244.25,800"></polygon></g
-		><g fill="hsl(220, 62%, 45%)" stroke-width="3" stroke="hsl(220, 43%, 13%)"></g></svg
-	>
+			></polygon><polygon points="1422,700 1422,800 1244.25,800"></polygon>
+		</g><g fill="hsl(220, 62%, 45%)" stroke-width="3" stroke="hsl(220, 43%, 13%)"></g>
+	</svg>
 </header>
 
 <style>

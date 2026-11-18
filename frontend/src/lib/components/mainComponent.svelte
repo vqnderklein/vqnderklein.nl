@@ -15,9 +15,9 @@
 			</li>
 			<li><a class:active={page.url.pathname.startsWith('/about')} href="/about">Over mij</a></li>
 			<li>
-				<a class:active={page.url.pathname.startsWith('/project-board')} href="/project-board"
-					>Projects</a
-				>
+				<a class:active={page.url.pathname.startsWith('/project-board')} href="/project-board">
+					Projects
+				</a>
 			</li>
 			<li>
 				<a class:active={page.url.pathname.startsWith('/contact')} href="/contact">Contact</a>
