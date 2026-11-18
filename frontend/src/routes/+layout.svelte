@@ -4,10 +4,10 @@
 
 	import '../global.css';
 
-	import NavbarComponent from '$lib/components/navbarComponent.svelte';
-	import BackgroundComponent from '$lib/components/backgroundComponent.svelte';
-	import SidenavbarComponent from '$lib/components/sidenavbarComponent.svelte';
-	import MainComponent from '$lib/components/mainComponent.svelte';
+	import NavbarComponent from '#lib/components/navbarComponent.svelte';
+	import BackgroundComponent from '#lib/components/backgroundComponent.svelte';
+	import SidenavbarComponent from '#lib/components/sidenavbarComponent.svelte';
+	import MainComponent from '#lib/components/mainComponent.svelte';
 
 	let { children } = $props();
 

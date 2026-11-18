@@ -1,5 +1,5 @@
 <script>
-    import RandomImageComponent from "$lib/components/randomImageComponent.svelte";
+    import RandomImageComponent from "#lib/components/randomImageComponent.svelte";
 
 </script>
 

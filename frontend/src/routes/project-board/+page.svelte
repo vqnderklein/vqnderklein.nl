@@ -1,6 +1,6 @@
 <script>
-	import icon from '$lib/assets/favicon-dark.svg';
-    import AlertComponent from "$lib/components/alertComponent.svelte";
+	import icon from '#lib/assets/favicon-dark.svg';
+    import AlertComponent from "#lib/components/alertComponent.svelte";
 </script>
 
 <svelte:head>

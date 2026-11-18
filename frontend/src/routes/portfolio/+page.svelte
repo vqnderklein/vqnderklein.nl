@@ -1,5 +1,5 @@
 <script>
-	import ProjectComponent from '$lib/components/projectComponent.svelte';
+	import ProjectComponent from '#lib/components/projectComponent.svelte';
 
 	const projects = [
 		{
