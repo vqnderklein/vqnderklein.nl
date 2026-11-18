@@ -1,3 +1,4 @@
+
 name: Build & Deploy
 
 on:
@@ -21,22 +22,48 @@ jobs:
       TAG: ${{ github.event.workflow_run.head_sha }}
 
     steps:
-      - uses: actions/checkout@v7
+      - name: Checkout tested commit
+        uses: actions/checkout@v7
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
 
       - name: Login to GHCR
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
-      - name: Build frontend
         run: |
-          docker build -t ghcr.io/${{ github.repository }}-frontend:$TAG ./frontend
-          docker push ghcr.io/${{ github.repository }}-frontend:$TAG
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io \
+            -u ${{ github.repository_owner }} \
+            --password-stdin
 
-      - name: Build backend
+      - name: Build and push frontend
         run: |
-          docker build -t ghcr.io/${{ github.repository }}-backend:$TAG ./backend
-          docker push ghcr.io/${{ github.repository }}-backend:$TAG
+          IMAGE=ghcr.io/${{ github.repository }}-frontend
+
+          docker build \
+            -t $IMAGE:$TAG \
+            -t $IMAGE:latest \
+            ./frontend
+
+          docker push $IMAGE:$TAG
+          docker push $IMAGE:latest
+
+      - name: Build and push backend
+        run: |
+          IMAGE=ghcr.io/${{ github.repository }}-backend
+
+          docker build \
+            -t $IMAGE:$TAG \
+            -t $IMAGE:latest \
+            ./backend
+
+          docker push $IMAGE:$TAG
+          docker push $IMAGE:latest
+
+      - name: Verify published images
+        run: |
+          docker manifest inspect \
+            ghcr.io/${{ github.repository }}-frontend:$TAG
+
+          docker manifest inspect \
+            ghcr.io/${{ github.repository }}-backend:$TAG
 
       - name: Copy docker-compose
         uses: appleboy/scp-action@v1.0.0
@@ -47,7 +74,7 @@ jobs:
           source: "docker-compose.yml"
           target: "/opt/vqnderklein.nl/"
 
-      - name: Copy db init files
+      - name: Copy database init files
         uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -56,7 +83,7 @@ jobs:
           source: "backend/db/init/."
           target: "/opt/vqnderklein.nl/"
 
-      - name: Copy nginx
+      - name: Copy nginx configuration
         uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -72,6 +99,8 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            set -e
+
             cd /opt/vqnderklein.nl/
 
             cat <<EOF > .env
@@ -83,7 +112,14 @@ jobs:
             SMTP_PASSWORD=${{ secrets.SMTP_PASSWORD }}
             EOF
 
-            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u GH_USER --password-stdin
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io \
+              -u GH_USER \
+              --password-stdin
 
             docker compose pull
-            docker compose up -d --force-recreate --remove-orphans
+
+            docker compose up -d \
+              --force-recreate \
+              --remove-orphans
+
+            docker compose ps
