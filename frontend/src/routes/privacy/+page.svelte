@@ -1,5 +1,5 @@
 <svelte:head>
-    <title>Privacy beleid • vqnderklein.nl </title>
+	<title>Privacy beleid • vqnderklein.nl</title>
 </svelte:head>
 
 <h1>Privacy</h1>

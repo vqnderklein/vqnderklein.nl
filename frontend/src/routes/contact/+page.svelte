@@ -86,14 +86,14 @@
 
 	<section>
 		<span class="pricacy">
-			<label for="privacy"
-				>Ik accepteer de <a href="privacy" target="_blank">privacy voorwaarden</a>.</label
-			>
+			<label for="privacy">
+				Ik accepteer de <a href="privacy" target="_blank">privacy voorwaarden</a>.
+			</label>
 			<input type="checkbox" required name="privacy" id="privacy" />
 		</span>
 	</section>
 
-	<input type="submit" value="{status}" />
+	<input type="submit" value={status} />
 </form>
 
 <style>

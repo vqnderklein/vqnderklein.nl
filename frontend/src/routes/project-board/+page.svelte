@@ -1,6 +1,6 @@
 <script>
 	import icon from '#lib/assets/favicon-dark.svg';
-    import AlertComponent from "#lib/components/alertComponent.svelte";
+	import AlertComponent from '#lib/components/alertComponent.svelte';
 </script>
 
 <svelte:head>
@@ -36,11 +36,7 @@
 					<p class="bigHeader">vqnderklein.nl</p>
 				</div>
 				<span class="favicon">
-					<img
-						src="{icon}"
-						alt="favicon vqnderklein.nl"
-						title="vqnderklein.nl"
-					/>
+					<img src={icon} alt="favicon vqnderklein.nl" title="vqnderklein.nl" />
 				</span>
 			</div>
 
@@ -63,8 +59,6 @@
 </section>
 
 <style>
-	
-
 	.projectGrid {
 		display: grid;
 		gap: 1rem;
@@ -142,7 +136,7 @@
 		justify-content: space-between;
 		align-items: center;
 		margin-bottom: 0;
-        padding: 1rem;
+		padding: 1rem;
 	}
 
 	.projectGrid .projectItem footer strong {
@@ -168,6 +162,4 @@
 		border-radius: 15px;
 		cursor: not-allowed;
 	}
-
-	
 </style>

@@ -38,12 +38,7 @@
 
 <svelte:head>
 	<title>Het begin van jouw online avontuur • vqnderklein.nl</title>
-	<link
-		rel="icon"
-		href={darkMode
-			? '/img/favicon-light.svg'
-			: '/img/favicon-dark.svg'}
-	/>
+	<link rel="icon" href={darkMode ? '/img/favicon-light.svg' : '/img/favicon-dark.svg'} />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="author" content="Mathijs van der Klein" />
 	<meta name="keywords" content="Portfolio Persoonlijk Webdevelopment Projects Informatief" />

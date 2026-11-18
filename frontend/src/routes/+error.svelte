@@ -1,13 +1,11 @@
 <script>
-	import { page } from '$app/stores';
-
-	console.log($page);
+	import { page } from '$app/state';
 </script>
 
 <div class="error-container">
 	<div class="error-wrapper">
 		<img src="/img/favicon-light.svg" alt="Favicon" width="50" />
-		<h1>{$page?.error?.message}</h1>
+		<h1>{page?.error?.message}</h1>
 		<p>
 			Woeps, daar ging iets niet goed. Geef ons een momentje om te kijken wat er mis is. We zijn zo
 			terug ¯\_(ツ)_/¯

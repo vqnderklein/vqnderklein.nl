@@ -22,7 +22,7 @@
 			client: 'Kelly de Groot',
 			year: 2024,
 			type: ['Website', 'Webapplicatie'],
-			tech: ['HTML', 'JS', 'PHP', "CSS"]
+			tech: ['HTML', 'JS', 'PHP', 'CSS']
 		},
 		{
 			id: 2,
@@ -95,7 +95,7 @@
 	.overview {
 		background-color: var(--lightGrey);
 		padding: 1rem;
-        margin-top: -1rem;
+		margin-top: -1rem;
 		display: flex;
 		gap: 1rem;
 		flex-wrap: wrap;
