@@ -17,21 +17,26 @@ jobs:
     runs-on: ubuntu-latest
     environment: deploy
 
+    env:
+      TAG: ${{ github.event.workflow_run.head_sha }}
+
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.workflow_run.head_sha }}
 
       - name: Login to GHCR
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Build frontend
         run: |
-          docker build -t ghcr.io/${{ github.repository }}-frontend:${{ github.sha }} ./frontend
-          docker push ghcr.io/${{ github.repository }}-frontend:${{ github.sha }}
+          docker build -t ghcr.io/${{ github.repository }}-frontend:$TAG ./frontend
+          docker push ghcr.io/${{ github.repository }}-frontend:$TAG
 
       - name: Build backend
         run: |
-          docker build -t ghcr.io/${{ github.repository }}-backend:${{ github.sha }} ./backend
-          docker push ghcr.io/${{ github.repository }}-backend:${{ github.sha }}
+          docker build -t ghcr.io/${{ github.repository }}-backend:$TAG ./backend
+          docker push ghcr.io/${{ github.repository }}-backend:$TAG
 
       - name: Copy docker-compose
         uses: appleboy/scp-action@v1.0.0
@@ -70,7 +75,7 @@ jobs:
             cd /opt/vqnderklein.nl/
 
             cat <<EOF > .env
-            IMAGE_TAG=${{ github.event.workflow_run.head_sha }}
+            IMAGE_TAG=${{ env.TAG }}
             PEXELS_API_KEY=${{ secrets.PEXELS_API_KEY }}
             SMTP_HOST=${{ secrets.SMTP_HOST }}
             SMTP_PORT=${{ secrets.SMTP_PORT }}
